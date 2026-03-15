@@ -112,7 +112,7 @@ function PublicApp() {
         <div style={{position:"relative",zIndex:1}}>
           {selected&&<button onClick={close} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"9px 20px",borderRadius:50,border:"none",background:"white",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#555",boxShadow:"0 2px 12px rgba(0,0,0,.1)",marginBottom:16}}>← Volver</button>}
           <div style={{fontSize:42,marginBottom:6}}>🔬🎨🔢</div>
-          <h1 style={{fontFamily:"'Fredoka One',cursive",fontSize:"clamp(26px,6vw,48px)",color:"white",textShadow:"0 2px 20px rgba(0,0,0,.15)",marginBottom:6}}>{selected?selected.title:"Sinapsis"}</h1>
+          <h1 style={{fontFamily:"'Outfit',sans-serif",fontSize:"clamp(26px,6vw,48px)",color:"white",textShadow:"0 2px 20px rgba(0,0,0,.15)",marginBottom:6}}>{selected?selected.title:"Sinapsis"}</h1>
           <p style={{color:"rgba(255,255,255,.9)",fontSize:16,fontWeight:700}}>{selected?`${selected.emoji} ${selected.category} · ${selected.time} · ${selected.age}`:"Conectando mentes curiosas con el mundo STEAM"}</p>
         </div>
       </div>
@@ -174,7 +174,7 @@ function PublicApp() {
                     </div>
                     <div style={{padding:"14px 16px 12px"}}>
                       <div style={{fontSize:24,marginBottom:3}}>{act.emoji}</div>
-                      <h2 style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:"#2D2D2D",marginBottom:4}}>{act.title}</h2>
+                      <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:18,color:"#2D2D2D",marginBottom:4}}>{act.title}</h2>
                       <p style={{color:"#888",fontSize:12,lineHeight:1.55,marginBottom:10}}>{act.description}</p>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                         <span style={{fontSize:12,color:"#aaa",fontWeight:700}}>👶 {act.age}</span>
@@ -199,12 +199,12 @@ function PublicApp() {
                 ))}
               </div>
             </div>
-            <h2 style={{fontFamily:"'Fredoka One',cursive",fontSize:24,color:"#2D2D2D",marginBottom:20}}><span style={{color:selected.category_color||"#5b3d8a"}}>📋</span> Paso a paso</h2>
+            <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:24,color:"#2D2D2D",marginBottom:20}}><span style={{color:selected.category_color||"#5b3d8a"}}>📋</span> Paso a paso</h2>
             {(selected.steps||[]).map(step=>(
               <div key={step.number} style={{background:"white",borderRadius:18,overflow:"hidden",boxShadow:"0 4px 20px rgba(0,0,0,.08)",marginBottom:18,border:"2px solid #f0f0f0",display:"flex"}}>
-                <div style={{width:52,minWidth:52,background:selected.category_color||"#5b3d8a",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Fredoka One',cursive",fontSize:26,color:"white"}}>{step.number}</div>
+                <div style={{width:52,minWidth:52,background:selected.category_color||"#5b3d8a",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Outfit',sans-serif",fontSize:26,color:"white"}}>{step.number}</div>
                 <div style={{padding:"18px 20px",flex:1}}>
-                  <h3 style={{fontFamily:"'Fredoka One',cursive",fontSize:18,color:"#2D2D2D",marginBottom:7}}>{step.title}</h3>
+                  <h3 style={{fontFamily:"'Outfit',sans-serif",fontSize:18,color:"#2D2D2D",marginBottom:7}}>{step.title}</h3>
                   <p style={{color:"#555",fontSize:14,lineHeight:1.75,fontWeight:600}}>{step.description}</p>
                 </div>
                 <div style={{width:180,minWidth:180,background:"#f8f8f8",overflow:"hidden",display:"flex",alignItems:"stretch"}}>{getStepImg(step,selected)}</div>
@@ -457,7 +457,7 @@ export default function Root(){
   return(
     <AppContext.Provider value={{activities,setActivities,loading,trackView,showToast}}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@700;800&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         @keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
         @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
