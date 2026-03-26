@@ -143,9 +143,9 @@ function PublicApp() {
 
         {/* MOBILE: chips de filtros rápidos */}
         {!loading&&!selected&&isMobile&&(
-          <div style={{marginBottom:4}}>
+          <div style={{background:"#FDFAF6",paddingTop:12,position:"sticky",top:0,zIndex:10}}>
             {/* Fila de categorías con scroll horizontal */}
-            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",padding:"0 12px 10px"}}>
+            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",padding:"0 12px 8px"}}>
               <div style={{display:"flex",gap:8,width:"max-content"}}>
                 {CATEGORIES.map(c=>{
                   const active = cat===c;
@@ -160,7 +160,7 @@ function PublicApp() {
               </div>
             </div>
             {/* Fila de edad y dificultad */}
-            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",padding:"0 12px 12px"}}>
+            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",padding:"0 12px 10px"}}>
               <div style={{display:"flex",gap:8,width:"max-content",alignItems:"center"}}>
                 <span style={{fontSize:11,fontWeight:800,color:"#bbb",whiteSpace:"nowrap"}}>👶</span>
                 {AGES.map(a=>{
@@ -188,7 +188,7 @@ function PublicApp() {
                 )}
               </div>
             </div>
-            <div style={{padding:"0 12px",marginBottom:8}}>
+            <div style={{padding:"0 12px 8px",borderBottom:"1px solid #f0f0f0"}}>
               <p style={{color:"#bbb",fontWeight:700,fontSize:12}}>{filtered.length===0?"😅 Sin resultados":`${filtered.length} actividad${filtered.length!==1?"es":""}`}</p>
             </div>
           </div>
