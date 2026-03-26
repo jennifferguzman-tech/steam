@@ -138,22 +138,63 @@ function PublicApp() {
         </div>
       </div>
 
-      <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 12px 100px":"0 20px 60px",marginTop:-20}}>
+      <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 0 100px":"0 20px 60px",marginTop:-20}}>
         {loading&&<Spinner/>}
 
-        {/* MOBILE: botón de filtros flotante */}
+        {/* MOBILE: chips de filtros rápidos */}
         {!loading&&!selected&&isMobile&&(
-          <div style={{marginBottom:12}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <p style={{color:"#bbb",fontWeight:700,fontSize:13}}>{filtered.length===0?"😅 Sin resultados":`${filtered.length} actividad${filtered.length!==1?"es":""}`}</p>
-              <button onClick={()=>setShowFilters(true)} style={{display:"flex",alignItems:"center",gap:6,background:"white",border:"2px solid "+(activeFilters.length>0?"#5b3d8a":"#E5E7EB"),borderRadius:50,padding:"7px 14px",fontSize:13,fontWeight:800,cursor:"pointer",color:activeFilters.length>0?"#5b3d8a":"#555",boxShadow:"0 2px 10px rgba(0,0,0,.06)"}}>
-                🎛️ Filtros {activeFilters.length>0&&<span style={{background:"#5b3d8a",color:"white",borderRadius:50,fontSize:10,fontWeight:900,padding:"1px 6px"}}>{activeFilters.length}</span>}
-              </button>
+          <div style={{marginBottom:4}}>
+            {/* Fila de categorías con scroll horizontal */}
+            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",padding:"0 12px 10px"}}>
+              <div style={{display:"flex",gap:8,width:"max-content"}}>
+                {CATEGORIES.map(c=>{
+                  const active = cat===c;
+                  const color = catColor[c]||"#5b3d8a";
+                  return(
+                    <button key={c} onClick={()=>setCat(c)}
+                      style={{padding:"7px 14px",borderRadius:50,border:`2px solid ${active?color:"#E5E7EB"}`,background:active?color:"white",color:active?"white":"#555",fontSize:12,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",transition:"all .15s",flexShrink:0}}>
+                      {c==="Todas"?"🔬 Todas":c}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            {/* Fila de edad y dificultad */}
+            <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",padding:"0 12px 12px"}}>
+              <div style={{display:"flex",gap:8,width:"max-content",alignItems:"center"}}>
+                <span style={{fontSize:11,fontWeight:800,color:"#bbb",whiteSpace:"nowrap"}}>👶</span>
+                {AGES.map(a=>{
+                  const active = age===a;
+                  return(
+                    <button key={a} onClick={()=>setAge(a)}
+                      style={{padding:"5px 12px",borderRadius:50,border:`2px solid ${active?"#6366F1":"#E5E7EB"}`,background:active?"#6366F1":"white",color:active?"white":"#555",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>
+                      {a==="Todas las edades"?"Todas":a}
+                    </button>
+                  );
+                })}
+                <span style={{fontSize:11,fontWeight:800,color:"#bbb",whiteSpace:"nowrap",marginLeft:4}}>⭐</span>
+                {DIFFICULTIES.map(d=>{
+                  const active = diff===d;
+                  const color = diffColor[d]||"#6366F1";
+                  return(
+                    <button key={d} onClick={()=>setDiff(d)}
+                      style={{padding:"5px 12px",borderRadius:50,border:`2px solid ${active?color:"#E5E7EB"}`,background:active?color:"white",color:active?"white":"#555",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>
+                      {d==="Todas"?"Todas":d}
+                    </button>
+                  );
+                })}
+                {activeFilters.length>0&&(
+                  <button onClick={resetAll} style={{padding:"5px 12px",borderRadius:50,border:"2px solid #FCA5A5",background:"#FEE2E2",color:"#EF4444",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>✕ Limpiar</button>
+                )}
+              </div>
+            </div>
+            <div style={{padding:"0 12px",marginBottom:8}}>
+              <p style={{color:"#bbb",fontWeight:700,fontSize:12}}>{filtered.length===0?"😅 Sin resultados":`${filtered.length} actividad${filtered.length!==1?"es":""}`}</p>
             </div>
           </div>
         )}
 
-        {/* MOBILE: drawer de filtros */}
+        {/* MOBILE: drawer de filtros (se mantiene para casos que lo necesiten) */}
         {showFilters&&isMobile&&(
           <div style={{position:"fixed",inset:0,zIndex:800,display:"flex",flexDirection:"column",justifyContent:"flex-end"}} onClick={e=>e.target===e.currentTarget&&setShowFilters(false)}>
             <div style={{background:"rgba(0,0,0,.4)",position:"absolute",inset:0}} onClick={()=>setShowFilters(false)}/>
@@ -211,7 +252,7 @@ function PublicApp() {
             )}
 
             {/* Grid cards */}
-            <div style={{flex:1,minWidth:0}}>
+            <div style={{flex:1,minWidth:0,padding:isMobile?"0 12px":0}}>
               {!isMobile&&<p style={{color:"#bbb",fontWeight:700,fontSize:13,marginBottom:18,marginTop:4}}>{filtered.length===0?"😅 Sin resultados":`${filtered.length} actividad${filtered.length!==1?"es":""}`}</p>}
               {filtered.length===0&&<div style={{textAlign:"center",padding:"60px 0",background:"white",borderRadius:20,boxShadow:"0 4px 20px rgba(0,0,0,.06)"}}><div style={{fontSize:52,marginBottom:12}}>🔍</div><button onClick={resetAll} style={{padding:"10px 26px",borderRadius:50,border:"none",background:"#5b3d8a",color:"white",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,cursor:"pointer"}}>Limpiar filtros</button></div>}
               <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":sideOpen?"repeat(auto-fill,minmax(260px,1fr))":"repeat(auto-fill,minmax(290px,1fr))",gap:isMobile?14:20}}>
