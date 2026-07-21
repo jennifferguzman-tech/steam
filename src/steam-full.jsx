@@ -27,15 +27,6 @@ const Illustrations = {
   music_cover:   <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#FCE4EC"/><circle cx="200" cy="115" r="70" fill="#F8BBD0" stroke="#F06292" strokeWidth="3"/><circle cx="200" cy="115" r="40" fill="#F06292" stroke="#E91E63" strokeWidth="2"/><circle cx="200" cy="115" r="10" fill="#C2185B"/></svg>,
 };
 
-const defaultStepSvg = (n, color) => (
-  <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
-    <rect width="300" height="200" fill={color+"18"}/>
-    <circle cx="150" cy="90" r="45" fill={color+"30"} stroke={color} strokeWidth="2"/>
-    <text x="150" y="97" textAnchor="middle" fill={color} fontSize="32" fontFamily="sans-serif" fontWeight="bold">{n}</text>
-    <text x="150" y="165" textAnchor="middle" fill={color} fontSize="12" fontFamily="sans-serif">Paso {n}</text>
-  </svg>
-);
-
 // ─────────────────────────────────────────────────────────────────────────────
 // CONSTANTES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -99,7 +90,6 @@ function PublicApp() {
   const close = ()=>{setSelected(null);window.scrollTo({top:0,behavior:"smooth"});};
 
   const getCover   = act   => act.cover_image ? <img src={act.cover_image} alt={act.title} style={{width:"100%",height:"100%",objectFit:"cover"}}/> : (Illustrations[act.cover_key]||Illustrations.rocket_cover);
-  const getStepImg = (s,a) => s.image ? <img src={s.image} alt={s.title} style={{width:"100%",height:"100%",objectFit:"cover"}}/> : defaultStepSvg(s.number,a.category_color||"#5b3d8a");
 
   const FilterSection = ({sectionKey,label,items,val,set,color})=>{
     const isOpen = openSections[sectionKey];
@@ -307,7 +297,7 @@ function PublicApp() {
             <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)",borderLeft:`6px solid ${selected.category_color||"#5b3d8a"}`}}>
               <p style={{color:"#555",fontSize:16,lineHeight:1.75,fontWeight:600,marginBottom:14}}>{selected.description}</p>
               <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-                {[{i:"⏱️",l:selected.time},{i:"👶",l:selected.age},{i:"📋",l:`${selected.steps?.length||0} pasos`},{i:"⭐",l:selected.difficulty}].map((it,i)=>(
+                {[{i:"⏱️",l:selected.time},{i:"👶",l:selected.age},{i:"⭐",l:selected.difficulty}].map((it,i)=>(
                   <span key={i} style={{background:"#f4f4f4",padding:"7px 15px",borderRadius:50,fontSize:13,fontWeight:700,color:"#444"}}>{it.i} {it.l}</span>
                 ))}
               </div>
@@ -337,29 +327,43 @@ function PublicApp() {
             )}
 
             {/* MATERIALES */}
-            {selected.materials?.length>0&&(
+            {selected.materials&&selected.materials.trim&&selected.materials.trim()&&(
               <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)"}}>
                 <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}>🧪 Materiales necesarios</h2>
-                <div style={{display:"flex",flexWrap:"wrap",gap:10}}>
-                  {selected.materials.map((mat,i)=>(
-                    <span key={i} style={{background:selected.category_color+"18"||"#5b3d8a18",color:selected.category_color||"#5b3d8a",border:`1.5px solid ${selected.category_color||"#5b3d8a"}40`,borderRadius:50,padding:"6px 16px",fontSize:13,fontWeight:700}}>• {mat}</span>
-                  ))}
-                </div>
+                <p style={{color:"#555",fontSize:14,lineHeight:1.8,fontWeight:600,whiteSpace:"pre-wrap"}}>{selected.materials}</p>
               </div>
             )}
 
-            {/* PASOS */}
-            <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:24,color:"#2D2D2D",marginBottom:20}}><span style={{color:selected.category_color||"#5b3d8a"}}>📋</span> Paso a paso</h2>
-            {(selected.steps||[]).map(step=>(
-              <div key={step.number} style={{background:"white",borderRadius:18,overflow:"hidden",boxShadow:"0 4px 20px rgba(0,0,0,.08)",marginBottom:18,border:"2px solid #f0f0f0",display:"flex"}}>
-                <div style={{width:52,minWidth:52,background:selected.category_color||"#5b3d8a",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Outfit',sans-serif",fontSize:26,color:"white"}}>{step.number}</div>
-                <div style={{padding:"18px 20px",flex:1}}>
-                  <h3 style={{fontFamily:"'Outfit',sans-serif",fontSize:18,color:"#2D2D2D",marginBottom:7}}>{step.title}</h3>
-                  <p style={{color:"#555",fontSize:14,lineHeight:1.75,fontWeight:600}}>{step.description}</p>
-                </div>
-                <div style={{width:180,minWidth:180,background:"#f8f8f8",overflow:"hidden",display:"flex",alignItems:"stretch"}}>{getStepImg(step,selected)}</div>
+            {/* INSTRUCCIONES */}
+            {selected.steps&&selected.steps.trim&&selected.steps.trim()&&(
+              <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)"}}>
+                <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}><span style={{color:selected.category_color||"#5b3d8a"}}>📋</span> Paso a paso</h2>
+                <p style={{color:"#555",fontSize:15,lineHeight:1.8,fontWeight:600,whiteSpace:"pre-wrap"}}>{selected.steps}</p>
               </div>
-            ))}
+            )}
+
+            {/* MULTIMEDIA */}
+            {selected.media?.length>0&&(
+              <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)"}}>
+                <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}>🎬 Fotos y videos</h2>
+                <div style={{display:"flex",flexDirection:"column",gap:16}}>
+                  {selected.media.map((m,i)=>{
+                    if(m.type==="image") return <img key={i} src={m.url} alt="" style={{width:"100%",borderRadius:12,objectFit:"cover"}}/>;
+                    if(m.type==="video") return <video key={i} src={m.url} controls style={{width:"100%",borderRadius:12}}/>;
+                    if(m.type==="youtube"){
+                      const idMatch = m.url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/);
+                      const vid = idMatch?idMatch[1]:null;
+                      return vid ? (
+                        <div key={i} style={{position:"relative",paddingTop:"56.25%",borderRadius:12,overflow:"hidden"}}>
+                          <iframe title={`yt-${i}`} src={`https://www.youtube.com/embed/${vid}`} allowFullScreen style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:"none"}}/>
+                        </div>
+                      ) : <a key={i} href={m.url} target="_blank" rel="noopener noreferrer">{m.url}</a>;
+                    }
+                    return null;
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* DOCUMENTOS */}
             {selected.documents?.length>0&&(
@@ -404,15 +408,17 @@ function PublicApp() {
 // ─────────────────────────────────────────────────────────────────────────────
 function ActivityModal({activity,onSave,onClose}){
   const isNew = !activity.id;
-  const [form,setForm] = useState({title:activity.title||"",emoji:activity.emoji||"⭐",category:activity.category||"Ciencia",difficulty:activity.difficulty||"Fácil",age:activity.age||"4+ años",time:activity.time||"",status:activity.status||"borrador",description:activity.description||"",cover_image:activity.cover_image||null,cover_key:activity.cover_key||"rocket_cover",steps:activity.steps||[{number:1,title:"",description:"",image:null}],materials:activity.materials||[],prior_knowledge:activity.prior_knowledge||"",competencies:activity.competencies||[],documents:activity.documents||[]});
-  const fileRefs=useRef([]);const coverRef=useRef();
+  const [form,setForm] = useState({title:activity.title||"",emoji:activity.emoji||"⭐",category:activity.category||"Ciencia",difficulty:activity.difficulty||"Fácil",age:activity.age||"4+ años",time:activity.time||"",status:activity.status||"borrador",description:activity.description||"",cover_image:activity.cover_image||null,cover_key:activity.cover_key||"rocket_cover",steps:typeof activity.steps==="string"?activity.steps:"",materials:typeof activity.materials==="string"?activity.materials:"",prior_knowledge:activity.prior_knowledge||"",competencies:activity.competencies||[],documents:activity.documents||[],media:activity.media||[]});
+  const coverRef=useRef();const photoRef=useRef();const videoRef=useRef();
+  const [ytLink,setYtLink]=useState("");
   const set=(k,v)=>setForm(f=>({...f,[k]:v}));
-  const setStep=(i,k,v)=>setForm(f=>({...f,steps:f.steps.map((s,idx)=>idx===i?{...s,[k]:v}:s)}));
-  const addStep=()=>setForm(f=>({...f,steps:[...f.steps,{number:f.steps.length+1,title:"",description:"",image:null}]}));
-  const removeStep=i=>setForm(f=>({...f,steps:f.steps.filter((_,idx)=>idx!==i).map((s,idx)=>({...s,number:idx+1}))}));
   const toBase64=file=>new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);});
-  const handleImg=async(i,e)=>{const f=e.target.files[0];if(!f)return;setStep(i,"image",await toBase64(f));};
   const handleCover=async e=>{const f=e.target.files[0];if(!f)return;set("cover_image",await toBase64(f));};
+  const addMedia=item=>setForm(f=>({...f,media:[...f.media,item]}));
+  const removeMedia=i=>setForm(f=>({...f,media:f.media.filter((_,idx)=>idx!==i)}));
+  const handlePhoto=async e=>{const f=e.target.files[0];if(!f)return;addMedia({type:"image",url:await toBase64(f)});e.target.value="";};
+  const handleVideo=async e=>{const f=e.target.files[0];if(!f)return;addMedia({type:"video",url:await toBase64(f)});e.target.value="";};
+  const addYoutube=()=>{if(!ytLink.trim())return;addMedia({type:"youtube",url:ytLink.trim()});setYtLink("");};
 
   return(
     <div style={{position:"fixed",inset:0,background:"rgba(10,10,30,.75)",zIndex:1000,display:"flex",alignItems:"flex-start",justifyContent:"center",backdropFilter:"blur(4px)",overflowY:"auto",padding:"28px 16px"}} onClick={e=>e.target===e.currentTarget&&onClose()}>
@@ -437,32 +443,38 @@ function ActivityModal({activity,onSave,onClose}){
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}><div><label style={labelStyle}>Tiempo</label><input value={form.time} onChange={e=>set("time",e.target.value)} style={inputStyle} placeholder="Ej: 30 min"/></div><div><label style={labelStyle}>Estado</label><select value={form.status} onChange={e=>set("status",e.target.value)} style={inputStyle}><option value="borrador">📝 Borrador</option><option value="publicado">✅ Publicado</option></select></div></div>
           </div>
           <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}><h3 style={labelStyle}>👟 Pasos ({form.steps.length})</h3><button onClick={addStep} style={{background:"#A78BFA",color:"white",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button></div>
-            {form.steps.map((step,i)=>(
-              <div key={i} style={{border:"2px solid #f0f0f0",borderRadius:12,padding:14,marginBottom:10,background:"#fafafa"}}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}><div style={{background:"#1a1a2e",color:"white",width:26,height:26,borderRadius:50,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:900}}>{step.number}</div>{form.steps.length>1&&<button onClick={()=>removeStep(i)} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:50,padding:"3px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>Eliminar</button>}</div>
-                <input value={step.title} onChange={e=>setStep(i,"title",e.target.value)} style={{...inputStyle,marginBottom:8}} placeholder={`Título del paso ${step.number}`}/>
-                <textarea value={step.description} onChange={e=>setStep(i,"description",e.target.value)} style={{...inputStyle,height:60,resize:"vertical",marginBottom:10}} placeholder="Descripción..."/>
-                <div style={{display:"flex",gap:10,alignItems:"center"}}>
-                  {step.image?<img src={step.image} alt="" style={{width:56,height:56,borderRadius:8,objectFit:"cover"}}/>:<div style={{width:56,height:56,borderRadius:8,background:"#f0f0f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>📷</div>}
-                  <div><input type="file" accept="image/*" style={{display:"none"}} ref={el=>fileRefs.current[i]=el} onChange={e=>handleImg(i,e)}/><button onClick={()=>fileRefs.current[i]?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"6px 12px",fontSize:12,fontWeight:800,cursor:"pointer"}}>{step.image?"Cambiar foto":"📤 Subir foto"}</button></div>
-                </div>
-              </div>
-            ))}
+            <h3 style={{...labelStyle,marginBottom:10}}>📋 Instrucciones paso a paso</h3>
+            <textarea value={form.steps} onChange={e=>set("steps",e.target.value)} style={{...inputStyle,height:160,resize:"vertical"}} placeholder="Escribí las instrucciones completas de la actividad..."/>
           </div>
           {/* MATERIALES */}
           <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
-              <h3 style={labelStyle}>🧪 Materiales</h3>
-              <button onClick={()=>set("materials",[...form.materials,""])} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button>
-            </div>
-            {form.materials.length===0&&<div style={{fontSize:12,color:"#ccc",textAlign:"center",padding:"10px 0"}}>Sin materiales agregados</div>}
-            {form.materials.map((mat,i)=>(
-              <div key={i} style={{display:"flex",gap:8,marginBottom:8,alignItems:"center"}}>
-                <input value={mat} onChange={e=>{const m=[...form.materials];m[i]=e.target.value;set("materials",m);}} style={{...inputStyle,marginBottom:0,flex:1}} placeholder={`Material ${i+1}`}/>
-                <button onClick={()=>set("materials",form.materials.filter((_,idx)=>idx!==i))} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:8,padding:"8px 10px",cursor:"pointer",fontSize:13,flexShrink:0}}>✕</button>
+            <h3 style={{...labelStyle,marginBottom:10}}>🧪 Materiales</h3>
+            <textarea value={form.materials} onChange={e=>set("materials",e.target.value)} style={{...inputStyle,height:90,resize:"vertical"}} placeholder="Listá los materiales necesarios..."/>
+          </div>
+
+          {/* MULTIMEDIA */}
+          <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
+            <h3 style={{...labelStyle,marginBottom:14}}>🎬 Fotos, videos y links (opcional)</h3>
+            {form.media.length===0&&<div style={{fontSize:12,color:"#ccc",textAlign:"center",padding:"10px 0"}}>Sin multimedia agregada</div>}
+            {form.media.map((m,i)=>(
+              <div key={i} style={{display:"flex",gap:10,marginBottom:8,alignItems:"center",border:"1.5px solid #f0f0f0",borderRadius:10,padding:10,background:"#fafafa"}}>
+                {m.type==="image"&&<img src={m.url} alt="" style={{width:48,height:48,borderRadius:8,objectFit:"cover",flexShrink:0}}/>}
+                {m.type==="video"&&<div style={{width:48,height:48,borderRadius:8,background:"#1a1a2e",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>🎥</div>}
+                {m.type==="youtube"&&<div style={{width:48,height:48,borderRadius:8,background:"#FEE2E2",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>▶️</div>}
+                <div style={{flex:1,fontSize:12,fontWeight:700,color:"#555",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.type==="youtube"?m.url:m.type==="image"?"Foto":"Video"}</div>
+                <button onClick={()=>removeMedia(i)} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:8,padding:"8px 10px",cursor:"pointer",fontSize:13,flexShrink:0}}>✕</button>
               </div>
             ))}
+            <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:10}}>
+              <input type="file" accept="image/*" ref={photoRef} style={{display:"none"}} onChange={handlePhoto}/>
+              <button onClick={()=>photoRef.current?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar foto</button>
+              <input type="file" accept="video/*" ref={videoRef} style={{display:"none"}} onChange={handleVideo}/>
+              <button onClick={()=>videoRef.current?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar video</button>
+            </div>
+            <div style={{display:"flex",gap:8,marginTop:10}}>
+              <input value={ytLink} onChange={e=>setYtLink(e.target.value)} style={{...inputStyle,marginBottom:0,flex:1}} placeholder="Link de YouTube..."/>
+              <button onClick={addYoutube} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer",whiteSpace:"nowrap"}}>+ Agregar link</button>
+            </div>
           </div>
 
           {/* CONOCIMIENTOS PREVIOS */}
@@ -682,7 +694,7 @@ function AdminPanel(){
 
   const handleSave = async(form)=>{
     setSaving(true);
-    const payload={title:form.title,emoji:form.emoji,category:form.category,category_color:form.category_color,difficulty:form.difficulty,age:form.age,time:form.time,status:form.status,description:form.description,cover_image:form.cover_image,cover_key:form.cover_key,steps:form.steps,materials:form.materials||[],prior_knowledge:form.prior_knowledge||"",competencies:form.competencies||[],documents:form.documents||[],updated_at:new Date().toISOString()};
+    const payload={title:form.title,emoji:form.emoji,category:form.category,category_color:form.category_color,difficulty:form.difficulty,age:form.age,time:form.time,status:form.status,description:form.description,cover_image:form.cover_image,cover_key:form.cover_key,steps:form.steps||"",materials:form.materials||"",prior_knowledge:form.prior_knowledge||"",competencies:form.competencies||[],documents:form.documents||[],media:form.media||[],updated_at:new Date().toISOString()};
     if(modal.activity.id){
       const{error}=await supabase.from("activities").update(payload).eq("id",modal.activity.id);
       if(error)showToast("❌ Error al guardar","#EF4444");
