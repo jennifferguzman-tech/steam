@@ -118,14 +118,16 @@ function PublicApp() {
   return(
     <div style={{minHeight:"100vh",background:"#FDFAF6",fontFamily:"'Nunito',sans-serif"}}>
       {/* Header */}
-      <div style={{background:"linear-gradient(135deg,#0B7285 0%,#17A2A8 55%,#F5A623 100%)",padding:isMobile?"32px 16px 50px":"44px 24px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",borderRadius:"50%",background:"#ffffff15",width:300,height:300,top:-100,right:-80}}/>
+      <div style={{background:"linear-gradient(160deg,#0A2A2C 0%,#0F3E40 55%,#0E5257 100%)",padding:isMobile?"32px 16px 50px":"44px 24px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",borderRadius:"50%",background:"radial-gradient(circle,rgba(23,162,168,.35) 0%,rgba(23,162,168,0) 70%)",width:420,height:420,top:-160,left:-120}}/>
+        <div style={{position:"absolute",borderRadius:"50%",background:"radial-gradient(circle,rgba(245,166,35,.45) 0%,rgba(245,166,35,0) 70%)",width:380,height:380,bottom:-200,right:-100}}/>
+        {!selected&&<div style={{position:"absolute",borderRadius:"50%",background:"radial-gradient(circle,rgba(246,196,69,.55) 0%,rgba(246,196,69,0) 65%)",width:320,height:320,top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}/>}
         <div style={{position:"relative",zIndex:1}}>
           {selected&&<button onClick={close} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"9px 20px",borderRadius:50,border:"none",background:"white",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#555",boxShadow:"0 2px 12px rgba(0,0,0,.1)",marginBottom:16}}>← Volver</button>}
           {selected ? (
             <h1 style={{fontFamily:"'Outfit',sans-serif",fontSize:"clamp(24px,6vw,48px)",color:"white",textShadow:"0 2px 20px rgba(0,0,0,.15)",marginBottom:6}}>{selected.title}</h1>
           ) : (
-            <img src="/logo.png" alt="Sinapsis STEAM" style={{height:isMobile?58:82,marginBottom:6}}/>
+            <img src="/logo.png" alt="Sinapsis STEAM" style={{height:isMobile?54:76,marginBottom:10,filter:"drop-shadow(0 6px 28px rgba(0,0,0,.45))"}}/>
           )}
           <p style={{color:"rgba(255,255,255,.9)",fontSize:isMobile?13:16,fontWeight:700}}>{selected?`${selected.emoji} ${selected.category} · ${selected.time} · ${selected.age}`:"Conectando mentes curiosas con el mundo STEAM"}</p>
         </div>
