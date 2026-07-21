@@ -21,7 +21,7 @@ const useApp = () => useContext(AppContext);
 const Illustrations = {
   volcano_cover: <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#FFF3E0"/><polygon points="200,40 80,220 320,220" fill="#A1887F"/><polygon points="200,40 120,220 280,220" fill="#795548"/><ellipse cx="200" cy="44" rx="30" ry="14" fill="#FF5722"/>{[0,1,2,3,4].map(i=><ellipse key={i} cx={185+i*8} cy={44-i*18} rx={6-i} ry={10-i*1.5} fill={["#FF5722","#FF7043","#FF8A65","#FFAB91","#FFCCBC"][i]}/>)}<text x="200" y="232" textAnchor="middle" fill="#795548" fontSize="11" fontFamily="sans-serif">¡Reacción química!</text></svg>,
   bridge_cover:  <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#E3F2FD"/><rect x="0" y="180" width="400" height="60" fill="#B0BEC5"/><rect x="30" y="165" width="340" height="8" rx="4" fill="#8D6E63"/>{[60,140,220,300].map((x,i)=><g key={i}><line x1={x} y1="165" x2={x-30} y2="100" stroke="#A1887F" strokeWidth="4"/><line x1={x} y1="165" x2={x+30} y2="100" stroke="#A1887F" strokeWidth="4"/></g>)}<line x1="30" y1="100" x2="370" y2="100" stroke="#795548" strokeWidth="5"/></svg>,
-  crystal_cover: <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#1a0533"/>{[{x:80,y:80,c:"#A78BFA"},{x:160,y:50,c:"#34D399"},{x:240,y:90,c:"#60A5FA"},{x:320,y:60,c:"#F472B6"},{x:120,y:160,c:"#FBBF24"},{x:280,y:150,c:"#A78BFA"}].map((cr,i)=><g key={i}><polygon points={`${cr.x},${cr.y-30} ${cr.x+15},${cr.y} ${cr.x},${cr.y+30} ${cr.x-15},${cr.y}`} fill={cr.c} opacity="0.85"/></g>)}</svg>,
+  crystal_cover: <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#1a0533"/>{[{x:80,y:80,c:"#9B7FD4"},{x:160,y:50,c:"#34D399"},{x:240,y:90,c:"#60A5FA"},{x:320,y:60,c:"#F472B6"},{x:120,y:160,c:"#FBBF24"},{x:280,y:150,c:"#9B7FD4"}].map((cr,i)=><g key={i}><polygon points={`${cr.x},${cr.y-30} ${cr.x+15},${cr.y} ${cr.x},${cr.y+30} ${cr.x-15},${cr.y}`} fill={cr.c} opacity="0.85"/></g>)}</svg>,
   rocket_cover:  <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#0D1B2A"/>{[30,80,140,200,260,320,370].map((x,i)=><circle key={i} cx={x} cy={15+i*8} r={1+i%2} fill="white" opacity="0.5"/>)}<rect x="185" y="100" width="14" height="28" rx="4" fill="#B0BEC5"/><ellipse cx="192" cy="100" rx="14" ry="12" fill="#FF5722"/><polygon points="180,128 192,148 204,128" fill="#FFB300"/></svg>,
   geometry_cover:<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#E8F5E9"/><g transform="translate(120,40)"><rect x="0" y="0" width="80" height="80" fill="none" stroke="#66BB6A" strokeWidth="3"/><line x1="0" y1="0" x2="20" y2="-28" stroke="#43A047" strokeWidth="3"/><line x1="80" y1="0" x2="100" y2="-28" stroke="#43A047" strokeWidth="3"/><line x1="20" y1="-28" x2="100" y2="-28" stroke="#2E7D32" strokeWidth="3"/></g></svg>,
   music_cover:   <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}><rect width="400" height="240" fill="#FCE4EC"/><circle cx="200" cy="115" r="70" fill="#F8BBD0" stroke="#F06292" strokeWidth="3"/><circle cx="200" cy="115" r="40" fill="#F06292" stroke="#E91E63" strokeWidth="2"/><circle cx="200" cy="115" r="10" fill="#C2185B"/></svg>,
@@ -30,7 +30,7 @@ const Illustrations = {
 // ─────────────────────────────────────────────────────────────────────────────
 // CONSTANTES
 // ─────────────────────────────────────────────────────────────────────────────
-const catColor  = {"Ciencia":"#5b3d8a","Ingeniería":"#4ECDC4","Arte + Ciencia":"#A78BFA","Tecnología":"#F59E0B","Matemáticas":"#10B981","Arte + Tecnología":"#EC4899"};
+const catColor  = {"Ciencia":"#F0654A","Ingeniería":"#17A2A8","Arte + Ciencia":"#9B7FD4","Tecnología":"#F5A623","Matemáticas":"#7CB955","Arte + Tecnología":"#F6C445"};
 const diffColor = {Fácil:"#10B981",Medio:"#F59E0B",Difícil:"#EF4444"};
 const CATEGORIES   = ["Todas","Ciencia","Ingeniería","Arte + Ciencia","Tecnología","Matemáticas","Arte + Tecnología"];
 const AGES         = ["Todas las edades","2+ años","3+ años","4+ años","5+ años","6+ años"];
@@ -48,7 +48,7 @@ function useIsMobile(){ const [m,setM]=useState(window.innerWidth<768); useEffec
 // ─────────────────────────────────────────────────────────────────────────────
 function Badge({text,color}){return <span style={{background:color+"20",color,padding:"3px 10px",borderRadius:50,fontSize:11,fontWeight:800}}>{text}</span>;}
 function Toast({msg,color}){return <div style={{position:"fixed",bottom:90,left:"50%",transform:"translateX(-50%)",background:color,color:"white",padding:"12px 22px",borderRadius:50,fontSize:14,fontWeight:800,boxShadow:"0 8px 24px rgba(0,0,0,.2)",animation:"toastIn .3s ease",zIndex:9999,whiteSpace:"nowrap"}}>{msg}</div>;}
-function Spinner(){return(<div style={{display:"flex",alignItems:"center",justifyContent:"center",padding:"80px 0",flexDirection:"column",gap:16}}><div style={{width:40,height:40,border:"4px solid #f0f0f0",borderTop:"4px solid #5b3d8a",borderRadius:"50%",animation:"spin 0.8s linear infinite"}}/><div style={{color:"#bbb",fontWeight:700,fontSize:14}}>Cargando actividades...</div></div>);}
+function Spinner(){return(<div style={{display:"flex",alignItems:"center",justifyContent:"center",padding:"80px 0",flexDirection:"column",gap:16}}><div style={{width:40,height:40,border:"4px solid #f0f0f0",borderTop:"4px solid #0B7285",borderRadius:"50%",animation:"spin 0.8s linear infinite"}}/><div style={{color:"#bbb",fontWeight:700,fontSize:14}}>Cargando actividades...</div></div>);}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PUBLIC APP
@@ -102,7 +102,7 @@ function PublicApp() {
         <div style={{overflow:"hidden",maxHeight:isOpen?300:0,opacity:isOpen?1:0,transition:"max-height .3s,opacity .25s"}}>
           <div style={{display:"flex",flexDirection:"column",gap:6}}>
             {items.map(it=>{
-              const active=val===it; const c=color||diffColor[it]||"#6366F1";
+              const active=val===it; const c=color||diffColor[it]||"#17A2A8";
               return(<button key={it} onClick={()=>set(it)} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 12px",borderRadius:10,border:"2px solid",borderColor:active?c:"transparent",background:active?c+"18":"transparent",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:active?800:600,fontSize:13,color:active?c:"#555",textAlign:"left",transition:"all .15s"}}
                 onMouseOver={e=>{if(!active){e.currentTarget.style.background="#F9FAFB";e.currentTarget.style.borderColor="#E5E7EB";}}}
                 onMouseOut={e=>{if(!active){e.currentTarget.style.background="transparent";e.currentTarget.style.borderColor="transparent";}}}>
@@ -118,12 +118,15 @@ function PublicApp() {
   return(
     <div style={{minHeight:"100vh",background:"#FDFAF6",fontFamily:"'Nunito',sans-serif"}}>
       {/* Header */}
-      <div style={{background:"linear-gradient(135deg,#2d1b4e 0%,#5b3d8a 45%,#2e9e6b 100%)",padding:isMobile?"32px 16px 50px":"44px 24px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
+      <div style={{background:"linear-gradient(135deg,#0B7285 0%,#17A2A8 55%,#F5A623 100%)",padding:isMobile?"32px 16px 50px":"44px 24px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",borderRadius:"50%",background:"#ffffff15",width:300,height:300,top:-100,right:-80}}/>
         <div style={{position:"relative",zIndex:1}}>
           {selected&&<button onClick={close} style={{display:"inline-flex",alignItems:"center",gap:8,padding:"9px 20px",borderRadius:50,border:"none",background:"white",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:"#555",boxShadow:"0 2px 12px rgba(0,0,0,.1)",marginBottom:16}}>← Volver</button>}
-          <div style={{fontSize:isMobile?30:42,marginBottom:6}}>🔬🎨🔢</div>
-          <h1 style={{fontFamily:"'Outfit',sans-serif",fontSize:"clamp(24px,6vw,48px)",color:"white",textShadow:"0 2px 20px rgba(0,0,0,.15)",marginBottom:6}}>{selected?selected.title:"Sinapsis"}</h1>
+          {selected ? (
+            <h1 style={{fontFamily:"'Outfit',sans-serif",fontSize:"clamp(24px,6vw,48px)",color:"white",textShadow:"0 2px 20px rgba(0,0,0,.15)",marginBottom:6}}>{selected.title}</h1>
+          ) : (
+            <img src="/logo.png" alt="Sinapsis STEAM" style={{height:isMobile?58:82,marginBottom:6}}/>
+          )}
           <p style={{color:"rgba(255,255,255,.9)",fontSize:isMobile?13:16,fontWeight:700}}>{selected?`${selected.emoji} ${selected.category} · ${selected.time} · ${selected.age}`:"Conectando mentes curiosas con el mundo STEAM"}</p>
         </div>
       </div>
@@ -139,7 +142,7 @@ function PublicApp() {
               <div style={{display:"flex",gap:8,width:"max-content"}}>
                 {CATEGORIES.map(c=>{
                   const active = cat===c;
-                  const color = catColor[c]||"#5b3d8a";
+                  const color = catColor[c]||"#0B7285";
                   return(
                     <button key={c} onClick={()=>setCat(c)}
                       style={{padding:"7px 14px",borderRadius:50,border:`2px solid ${active?color:"#E5E7EB"}`,background:active?color:"white",color:active?"white":"#555",fontSize:12,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",transition:"all .15s",flexShrink:0}}>
@@ -157,7 +160,7 @@ function PublicApp() {
                   const active = age===a;
                   return(
                     <button key={a} onClick={()=>setAge(a)}
-                      style={{padding:"5px 12px",borderRadius:50,border:`2px solid ${active?"#6366F1":"#E5E7EB"}`,background:active?"#6366F1":"white",color:active?"white":"#555",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>
+                      style={{padding:"5px 12px",borderRadius:50,border:`2px solid ${active?"#17A2A8":"#E5E7EB"}`,background:active?"#17A2A8":"white",color:active?"white":"#555",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>
                       {a==="Todas las edades"?"Todas":a}
                     </button>
                   );
@@ -165,7 +168,7 @@ function PublicApp() {
                 <span style={{fontSize:11,fontWeight:800,color:"#bbb",whiteSpace:"nowrap",marginLeft:4}}>⭐</span>
                 {DIFFICULTIES.map(d=>{
                   const active = diff===d;
-                  const color = diffColor[d]||"#6366F1";
+                  const color = diffColor[d]||"#17A2A8";
                   return(
                     <button key={d} onClick={()=>setDiff(d)}
                       style={{padding:"5px 12px",borderRadius:50,border:`2px solid ${active?color:"#E5E7EB"}`,background:active?color:"white",color:active?"white":"#555",fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap",flexShrink:0}}>
@@ -193,11 +196,11 @@ function PublicApp() {
                 <span style={{fontWeight:900,fontSize:16,color:"#1a1a2e"}}>🎛️ Filtros</span>
                 <button onClick={()=>setShowFilters(false)} style={{background:"#f4f4f4",border:"none",borderRadius:50,width:32,height:32,fontSize:18,cursor:"pointer"}}>×</button>
               </div>
-              <FilterSection sectionKey="cat"  label="🔬 Categoría" items={CATEGORIES}   val={cat}  set={v=>{setCat(v);}} color="#5b3d8a"/>
-              <FilterSection sectionKey="age"  label="👶 Edad"      items={AGES}          val={age}  set={v=>{setAge(v);}} color="#6366F1"/>
+              <FilterSection sectionKey="cat"  label="🔬 Categoría" items={CATEGORIES}   val={cat}  set={v=>{setCat(v);}} color="#0B7285"/>
+              <FilterSection sectionKey="age"  label="👶 Edad"      items={AGES}          val={age}  set={v=>{setAge(v);}} color="#17A2A8"/>
               <FilterSection sectionKey="diff" label="⭐ Dificultad" items={DIFFICULTIES} val={diff} set={v=>{setDiff(v);}} color={null}/>
               <button onClick={()=>{resetAll();setShowFilters(false);}} style={{width:"100%",padding:"12px",borderRadius:12,border:"none",background:"#FEE2E2",color:"#EF4444",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"'Nunito',sans-serif",marginTop:8}}>Limpiar filtros</button>
-              <button onClick={()=>setShowFilters(false)} style={{width:"100%",padding:"12px",borderRadius:12,border:"none",background:"#5b3d8a",color:"white",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"'Nunito',sans-serif",marginTop:8}}>Ver resultados ({filtered.length})</button>
+              <button onClick={()=>setShowFilters(false)} style={{width:"100%",padding:"12px",borderRadius:12,border:"none",background:"#0B7285",color:"white",fontWeight:800,fontSize:14,cursor:"pointer",fontFamily:"'Nunito',sans-serif",marginTop:8}}>Ver resultados ({filtered.length})</button>
             </div>
           </div>
         )}
@@ -210,27 +213,27 @@ function PublicApp() {
               <div style={{width:sideOpen?230:52,minWidth:sideOpen?230:52,flexShrink:0,transition:"width .3s cubic-bezier(.4,0,.2,1),min-width .3s",position:"sticky",top:20}}>
                 <div style={{background:"white",borderRadius:20,boxShadow:"0 4px 20px rgba(0,0,0,.08)",overflow:"hidden"}}>
                   <div style={{padding:sideOpen?"16px 18px 14px":"16px 10px",display:"flex",alignItems:"center",justifyContent:sideOpen?"space-between":"center",borderBottom:"1px solid #F3F4F6"}}>
-                    {sideOpen&&<div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:16}}>🎛️</span><span style={{fontWeight:900,fontSize:14,color:"#1a1a2e"}}>Filtros</span>{activeFilters.length>0&&<span style={{background:"#5b3d8a",color:"white",borderRadius:50,fontSize:11,fontWeight:900,padding:"1px 7px"}}>{activeFilters.length}</span>}</div>}
+                    {sideOpen&&<div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:16}}>🎛️</span><span style={{fontWeight:900,fontSize:14,color:"#1a1a2e"}}>Filtros</span>{activeFilters.length>0&&<span style={{background:"#0B7285",color:"white",borderRadius:50,fontSize:11,fontWeight:900,padding:"1px 7px"}}>{activeFilters.length}</span>}</div>}
                     <button onClick={()=>setSideOpen(o=>!o)} style={{background:"#F9FAFB",border:"1px solid #E5E7EB",borderRadius:8,width:30,height:30,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}} onMouseOver={e=>e.currentTarget.style.background="#F0F0F0"} onMouseOut={e=>e.currentTarget.style.background="#F9FAFB"}>{sideOpen?"◀":"▶"}</button>
                   </div>
                   {!sideOpen&&(
                     <div style={{padding:"12px 0",display:"flex",flexDirection:"column",alignItems:"center",gap:10}}>
                       {[{icon:"🔬",v:cat,d:"Todas"},{icon:"👶",v:age,d:"Todas las edades"},{icon:"⭐",v:diff,d:"Todas"}].map((f,i)=>(
-                        <div key={i} title={f.v} style={{width:32,height:32,borderRadius:8,background:f.v!==f.d?"#5b3d8a18":"#F9FAFB",border:f.v!==f.d?"2px solid #5b3d8a":"2px solid #E5E7EB",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>{f.icon}</div>
+                        <div key={i} title={f.v} style={{width:32,height:32,borderRadius:8,background:f.v!==f.d?"#0B728518":"#F9FAFB",border:f.v!==f.d?"2px solid #0B7285":"2px solid #E5E7EB",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15}}>{f.icon}</div>
                       ))}
                       {activeFilters.length>0&&<button onClick={resetAll} style={{width:32,height:32,borderRadius:8,background:"#FEE2E2",border:"2px solid #FCA5A5",cursor:"pointer",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center"}} title="Limpiar">✕</button>}
                     </div>
                   )}
                   {sideOpen&&(
                     <div style={{padding:"16px 16px 4px"}}>
-                      <FilterSection sectionKey="cat"  label="🔬 Categoría" items={CATEGORIES}   val={cat}  set={setCat}  color="#5b3d8a"/>
-                      <FilterSection sectionKey="age"  label="👶 Edad"      items={AGES}          val={age}  set={setAge}  color="#6366F1"/>
+                      <FilterSection sectionKey="cat"  label="🔬 Categoría" items={CATEGORIES}   val={cat}  set={setCat}  color="#0B7285"/>
+                      <FilterSection sectionKey="age"  label="👶 Edad"      items={AGES}          val={age}  set={setAge}  color="#17A2A8"/>
                       <FilterSection sectionKey="diff" label="⭐ Dificultad" items={DIFFICULTIES} val={diff} set={setDiff} color={null}/>
                       {activeFilters.length>0&&(
                         <div style={{paddingBottom:14}}>
                           <div style={{fontSize:11,fontWeight:800,color:"#bbb",textTransform:"uppercase",letterSpacing:"1px",marginBottom:8}}>Aplicados</div>
                           <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:10}}>
-                            {activeFilters.map((f,i)=><button key={i} onClick={f.clear} style={{display:"flex",alignItems:"center",gap:5,background:"#5b3d8a18",color:"#5b3d8a",border:"1.5px solid #5b3d8a55",borderRadius:50,padding:"4px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>{f.label} ×</button>)}
+                            {activeFilters.map((f,i)=><button key={i} onClick={f.clear} style={{display:"flex",alignItems:"center",gap:5,background:"#0B728518",color:"#0B7285",border:"1.5px solid #0B728555",borderRadius:50,padding:"4px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>{f.label} ×</button>)}
                           </div>
                           <button onClick={resetAll} style={{width:"100%",padding:"8px",borderRadius:10,border:"none",background:"#FEE2E2",color:"#EF4444",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>Limpiar todo</button>
                         </div>
@@ -244,7 +247,7 @@ function PublicApp() {
             {/* Grid cards */}
             <div style={{flex:1,minWidth:0,padding:isMobile?"0 12px":0}}>
               {!isMobile&&<p style={{color:"#bbb",fontWeight:700,fontSize:13,marginBottom:18,marginTop:4}}>{filtered.length===0?"😅 Sin resultados":`${filtered.length} actividad${filtered.length!==1?"es":""}`}</p>}
-              {filtered.length===0&&<div style={{textAlign:"center",padding:"60px 0",background:"white",borderRadius:20,boxShadow:"0 4px 20px rgba(0,0,0,.06)"}}><div style={{fontSize:52,marginBottom:12}}>🔍</div><button onClick={resetAll} style={{padding:"10px 26px",borderRadius:50,border:"none",background:"#5b3d8a",color:"white",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,cursor:"pointer"}}>Limpiar filtros</button></div>}
+              {filtered.length===0&&<div style={{textAlign:"center",padding:"60px 0",background:"white",borderRadius:20,boxShadow:"0 4px 20px rgba(0,0,0,.06)"}}><div style={{fontSize:52,marginBottom:12}}>🔍</div><button onClick={resetAll} style={{padding:"10px 26px",borderRadius:50,border:"none",background:"#0B7285",color:"white",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,cursor:"pointer"}}>Limpiar filtros</button></div>}
               <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":sideOpen?"repeat(auto-fill,minmax(260px,1fr))":"repeat(auto-fill,minmax(290px,1fr))",gap:isMobile?14:20}}>
                 {filtered.map(act=>(
                   <div key={act.id} onClick={()=>open(act)} style={{background:"white",borderRadius:22,overflow:"hidden",cursor:"pointer",boxShadow:"0 4px 20px rgba(0,0,0,.08)",transition:"transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s"}} onMouseOver={e=>{e.currentTarget.style.transform="translateY(-8px) scale(1.02)";e.currentTarget.style.boxShadow="0 16px 40px rgba(0,0,0,.14)";}} onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,.08)";}}>
@@ -286,7 +289,7 @@ function PublicApp() {
                 }
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%)"}}/>
                 <div style={{position:"absolute",bottom:18,left:22,display:"flex",gap:8,flexWrap:"wrap"}}>
-                  <span style={{background:selected.category_color||"#5b3d8a",color:"white",padding:"4px 12px",borderRadius:50,fontSize:12,fontWeight:800}}>{selected.category}</span>
+                  <span style={{background:selected.category_color||"#0B7285",color:"white",padding:"4px 12px",borderRadius:50,fontSize:12,fontWeight:800}}>{selected.category}</span>
                   <span style={{background:"rgba(0,0,0,.5)",color:"white",padding:"4px 12px",borderRadius:50,fontSize:12,fontWeight:700}}>⏱️ {selected.time}</span>
                   <span style={{background:"rgba(0,0,0,.5)",color:"white",padding:"4px 12px",borderRadius:50,fontSize:12,fontWeight:700}}>👶 {selected.age}</span>
                 </div>
@@ -294,7 +297,7 @@ function PublicApp() {
             )}
 
             {/* DESCRIPCIÓN */}
-            <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)",borderLeft:`6px solid ${selected.category_color||"#5b3d8a"}`}}>
+            <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)",borderLeft:`6px solid ${selected.category_color||"#0B7285"}`}}>
               <p style={{color:"#555",fontSize:16,lineHeight:1.75,fontWeight:600,marginBottom:14}}>{selected.description}</p>
               <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
                 {[{i:"⏱️",l:selected.time},{i:"👶",l:selected.age},{i:"⭐",l:selected.difficulty}].map((it,i)=>(
@@ -317,8 +320,8 @@ function PublicApp() {
                 <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}>🎯 Temas y competencias</h2>
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
                   {selected.competencies.map((comp,i)=>(
-                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#f8f6ff",borderRadius:10,border:"1.5px solid #EDE9FE"}}>
-                      <span style={{background:selected.category_color||"#5b3d8a",color:"white",width:22,height:22,borderRadius:50,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900,flexShrink:0}}>{i+1}</span>
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#f8f6ff",borderRadius:10,border:"1.5px solid #DFF6F6"}}>
+                      <span style={{background:selected.category_color||"#0B7285",color:"white",width:22,height:22,borderRadius:50,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900,flexShrink:0}}>{i+1}</span>
                       <span style={{fontSize:14,fontWeight:600,color:"#333"}}>{comp}</span>
                     </div>
                   ))}
@@ -337,7 +340,7 @@ function PublicApp() {
             {/* INSTRUCCIONES */}
             {selected.steps&&selected.steps.trim&&selected.steps.trim()&&(
               <div style={{background:"white",borderRadius:18,padding:22,marginBottom:18,boxShadow:"0 4px 20px rgba(0,0,0,.08)"}}>
-                <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}><span style={{color:selected.category_color||"#5b3d8a"}}>📋</span> Paso a paso</h2>
+                <h2 style={{fontFamily:"'Outfit',sans-serif",fontSize:20,color:"#2D2D2D",marginBottom:16}}><span style={{color:selected.category_color||"#0B7285"}}>📋</span> Paso a paso</h2>
                 <p style={{color:"#555",fontSize:15,lineHeight:1.8,fontWeight:600,whiteSpace:"pre-wrap"}}>{selected.steps}</p>
               </div>
             )}
@@ -394,7 +397,7 @@ function PublicApp() {
             )}
 
             <div style={{textAlign:"center",marginTop:30}}>
-              <button onClick={close} style={{background:selected.category_color||"#5b3d8a",color:"white",border:"none",borderRadius:50,padding:"13px 30px",fontSize:15,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>← Ver todas las actividades</button>
+              <button onClick={close} style={{background:selected.category_color||"#0B7285",color:"white",border:"none",borderRadius:50,padding:"13px 30px",fontSize:15,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>← Ver todas las actividades</button>
             </div>
           </div>
         )}
@@ -423,8 +426,8 @@ function ActivityModal({activity,onSave,onClose}){
   return(
     <div style={{position:"fixed",inset:0,background:"rgba(10,10,30,.75)",zIndex:1000,display:"flex",alignItems:"flex-start",justifyContent:"center",backdropFilter:"blur(4px)",overflowY:"auto",padding:"28px 16px"}} onClick={e=>e.target===e.currentTarget&&onClose()}>
       <div style={{background:"#f8f9ff",borderRadius:24,width:"100%",maxWidth:700,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
-        <div style={{background:"linear-gradient(135deg,#1a1a2e,#16213e)",padding:"22px 28px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <div><div style={{color:"#A78BFA",fontSize:11,fontWeight:800,textTransform:"uppercase",letterSpacing:"1.5px",marginBottom:3}}>{isNew?"Nueva actividad":"Editar actividad"}</div><div style={{color:"white",fontSize:19,fontWeight:800}}>{form.emoji} {form.title||"Sin título"}</div></div>
+        <div style={{background:"linear-gradient(135deg,#12393B,#0B7285)",padding:"22px 28px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div><div style={{color:"#9B7FD4",fontSize:11,fontWeight:800,textTransform:"uppercase",letterSpacing:"1.5px",marginBottom:3}}>{isNew?"Nueva actividad":"Editar actividad"}</div><div style={{color:"white",fontSize:19,fontWeight:800}}>{form.emoji} {form.title||"Sin título"}</div></div>
           <button onClick={onClose} style={{background:"rgba(255,255,255,.1)",border:"none",color:"white",width:34,height:34,borderRadius:50,cursor:"pointer",fontSize:18}}>×</button>
         </div>
         <div style={{padding:"22px 28px",display:"flex",flexDirection:"column",gap:16}}>
@@ -432,7 +435,7 @@ function ActivityModal({activity,onSave,onClose}){
             <h3 style={{...labelStyle,marginBottom:12}}>🖼️ Portada</h3>
             <div style={{display:"flex",gap:14,alignItems:"center"}}>
               <div style={{width:120,height:75,borderRadius:12,overflow:"hidden",background:"#f0f0f0",flexShrink:0}}>{form.cover_image?<img src={form.cover_image} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:Illustrations[form.cover_key]}</div>
-              <div><input type="file" accept="image/*" ref={coverRef} style={{display:"none"}} onChange={handleCover}/><button onClick={()=>coverRef.current?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 16px",fontSize:12,fontWeight:800,cursor:"pointer",display:"block",marginBottom:6}}>📤 Subir portada</button><div style={{fontSize:11,color:"#aaa"}}>O usa la ilustración automática</div></div>
+              <div><input type="file" accept="image/*" ref={coverRef} style={{display:"none"}} onChange={handleCover}/><button onClick={()=>coverRef.current?.click()} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:8,padding:"8px 16px",fontSize:12,fontWeight:800,cursor:"pointer",display:"block",marginBottom:6}}>📤 Subir portada</button><div style={{fontSize:11,color:"#aaa"}}>O usa la ilustración automática</div></div>
             </div>
           </div>
           <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
@@ -459,7 +462,7 @@ function ActivityModal({activity,onSave,onClose}){
             {form.media.map((m,i)=>(
               <div key={i} style={{display:"flex",gap:10,marginBottom:8,alignItems:"center",border:"1.5px solid #f0f0f0",borderRadius:10,padding:10,background:"#fafafa"}}>
                 {m.type==="image"&&<img src={m.url} alt="" style={{width:48,height:48,borderRadius:8,objectFit:"cover",flexShrink:0}}/>}
-                {m.type==="video"&&<div style={{width:48,height:48,borderRadius:8,background:"#1a1a2e",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>🎥</div>}
+                {m.type==="video"&&<div style={{width:48,height:48,borderRadius:8,background:"#12393B",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>🎥</div>}
                 {m.type==="youtube"&&<div style={{width:48,height:48,borderRadius:8,background:"#FEE2E2",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>▶️</div>}
                 <div style={{flex:1,fontSize:12,fontWeight:700,color:"#555",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{m.type==="youtube"?m.url:m.type==="image"?"Foto":"Video"}</div>
                 <button onClick={()=>removeMedia(i)} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:8,padding:"8px 10px",cursor:"pointer",fontSize:13,flexShrink:0}}>✕</button>
@@ -467,13 +470,13 @@ function ActivityModal({activity,onSave,onClose}){
             ))}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:10}}>
               <input type="file" accept="image/*" ref={photoRef} style={{display:"none"}} onChange={handlePhoto}/>
-              <button onClick={()=>photoRef.current?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar foto</button>
+              <button onClick={()=>photoRef.current?.click()} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar foto</button>
               <input type="file" accept="video/*" ref={videoRef} style={{display:"none"}} onChange={handleVideo}/>
-              <button onClick={()=>videoRef.current?.click()} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar video</button>
+              <button onClick={()=>videoRef.current?.click()} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>📤 Agregar video</button>
             </div>
             <div style={{display:"flex",gap:8,marginTop:10}}>
               <input value={ytLink} onChange={e=>setYtLink(e.target.value)} style={{...inputStyle,marginBottom:0,flex:1}} placeholder="Link de YouTube..."/>
-              <button onClick={addYoutube} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer",whiteSpace:"nowrap"}}>+ Agregar link</button>
+              <button onClick={addYoutube} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:8,padding:"8px 14px",fontSize:12,fontWeight:800,cursor:"pointer",whiteSpace:"nowrap"}}>+ Agregar link</button>
             </div>
           </div>
 
@@ -487,7 +490,7 @@ function ActivityModal({activity,onSave,onClose}){
           <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
               <h3 style={labelStyle}>🎯 Temas / Competencias</h3>
-              <button onClick={()=>set("competencies",[...form.competencies,""])} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button>
+              <button onClick={()=>set("competencies",[...form.competencies,""])} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button>
             </div>
             {form.competencies.length===0&&<div style={{fontSize:12,color:"#ccc",textAlign:"center",padding:"10px 0"}}>Sin competencias agregadas</div>}
             {form.competencies.map((comp,i)=>(
@@ -502,7 +505,7 @@ function ActivityModal({activity,onSave,onClose}){
           <div style={{background:"white",borderRadius:16,padding:18,boxShadow:"0 2px 12px rgba(0,0,0,.05)"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
               <h3 style={labelStyle}>📎 Documentos</h3>
-              <button onClick={()=>set("documents",[...form.documents,{name:"",url:"",file:null,fileData:null}])} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button>
+              <button onClick={()=>set("documents",[...form.documents,{name:"",url:"",file:null,fileData:null}])} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:50,padding:"6px 14px",fontSize:12,fontWeight:800,cursor:"pointer"}}>+ Agregar</button>
             </div>
             {form.documents.length===0&&<div style={{fontSize:12,color:"#ccc",textAlign:"center",padding:"10px 0"}}>Sin documentos agregados</div>}
             {form.documents.map((doc,i)=>{
@@ -523,7 +526,7 @@ function ActivityModal({activity,onSave,onClose}){
                     <input value={doc.url} onChange={e=>{const d=[...form.documents];d[i]={...d[i],url:e.target.value,file:null,fileData:null};set("documents",d);}} style={{...inputStyle,marginBottom:0,flex:1}} placeholder="URL (Google Drive, web...)"/>
                     <div style={{fontSize:11,color:"#aaa",fontWeight:700,flexShrink:0}}>ó</div>
                     <input type="file" ref={docFileRef} style={{display:"none"}} onChange={handleDocFile}/>
-                    <button onClick={()=>docFileRef.current?.click()} style={{background:doc.fileData?"#DCFCE7":"#EDE9FE",color:doc.fileData?"#16A34A":"#7C3AED",border:"none",borderRadius:8,padding:"8px 12px",fontSize:12,fontWeight:800,cursor:"pointer",whiteSpace:"nowrap",flexShrink:0}}>
+                    <button onClick={()=>docFileRef.current?.click()} style={{background:doc.fileData?"#DCFCE7":"#DFF6F6",color:doc.fileData?"#16A34A":"#0B7285",border:"none",borderRadius:8,padding:"8px 12px",fontSize:12,fontWeight:800,cursor:"pointer",whiteSpace:"nowrap",flexShrink:0}}>
                       {doc.fileData?`📄 ${doc.file}`:"📤 Subir archivo"}
                     </button>
                   </div>
@@ -535,7 +538,7 @@ function ActivityModal({activity,onSave,onClose}){
         </div>
         <div style={{padding:"14px 28px 22px",display:"flex",gap:10,justifyContent:"flex-end",borderTop:"2px solid #f0f0f0"}}>
           <button onClick={onClose} style={{background:"white",border:"2px solid #e0e0e0",borderRadius:50,padding:"10px 22px",fontSize:14,fontWeight:700,cursor:"pointer",color:"#555",fontFamily:"inherit"}}>Cancelar</button>
-          <button onClick={()=>onSave({...form,category_color:catColor[form.category]||"#888"})} style={{background:"linear-gradient(135deg,#A78BFA,#6366F1)",border:"none",borderRadius:50,padding:"10px 26px",fontSize:14,fontWeight:800,cursor:"pointer",color:"white",fontFamily:"inherit"}}>
+          <button onClick={()=>onSave({...form,category_color:catColor[form.category]||"#888"})} style={{background:"linear-gradient(135deg,#17A2A8,#F5A623)",border:"none",borderRadius:50,padding:"10px 26px",fontSize:14,fontWeight:800,cursor:"pointer",color:"white",fontFamily:"inherit"}}>
             {isNew?"✅ Crear":"💾 Guardar"}
           </button>
         </div>
@@ -573,7 +576,7 @@ function UserSection(){
     })();
   },[]);
 
-  const roleColor={parent:"#6366F1",teacher:"#10B981",admin:"#F59E0B"};
+  const roleColor={parent:"#17A2A8",teacher:"#10B981",admin:"#F59E0B"};
   const roleLabel={parent:"Padre/Madre",teacher:"Docente",admin:"Admin"};
 
   const handleSave=async()=>{
@@ -586,7 +589,7 @@ function UserSection(){
     } else {
       const{data,error}=await supabase.from("users_app").insert(payload).select().single();
       if(error)showToast("❌ Error al crear","#EF4444");
-      else{setUsers(prev=>[data,...prev]);showToast("🎉 Usuario creado","#6366F1");setModal(null);}
+      else{setUsers(prev=>[data,...prev]);showToast("🎉 Usuario creado","#17A2A8");setModal(null);}
     }
   };
 
@@ -607,11 +610,11 @@ function UserSection(){
         <div style={{background:"white",borderRadius:12,padding:"9px 14px",display:"flex",alignItems:"center",gap:8,boxShadow:"0 2px 10px rgba(0,0,0,.06)",flex:1,marginRight:12}}>
           <span>🔍</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar usuario..." style={{border:"none",outline:"none",fontSize:13,fontWeight:600,color:"#1a1a2e",width:"100%",fontFamily:"inherit",background:"transparent"}}/>{search&&<button onClick={()=>setSearch("")} style={{background:"none",border:"none",cursor:"pointer",color:"#ccc",fontSize:16}}>×</button>}
         </div>
-        <button onClick={openNew} style={{background:"linear-gradient(135deg,#A78BFA,#6366F1)",border:"none",borderRadius:50,padding:"9px 20px",color:"white",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>+ Nuevo usuario</button>
+        <button onClick={openNew} style={{background:"linear-gradient(135deg,#17A2A8,#F5A623)",border:"none",borderRadius:50,padding:"9px 20px",color:"white",fontWeight:800,fontSize:13,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>+ Nuevo usuario</button>
       </div>
 
       <div style={{display:"flex",gap:14,marginBottom:20,flexWrap:"wrap"}}>
-        {[{label:"Total",value:users.length,color:"#6366F1",icon:"👥"},{label:"Padres",value:users.filter(u=>u.role==="parent").length,color:"#A78BFA",icon:"👨‍👩‍👧"},{label:"Docentes",value:users.filter(u=>u.role==="teacher").length,color:"#10B981",icon:"👩‍🏫"},{label:"Activos",value:users.filter(u=>u.status==="activo").length,color:"#F59E0B",icon:"✅"}].map((s,i)=>(
+        {[{label:"Total",value:users.length,color:"#17A2A8",icon:"👥"},{label:"Padres",value:users.filter(u=>u.role==="parent").length,color:"#9B7FD4",icon:"👨‍👩‍👧"},{label:"Docentes",value:users.filter(u=>u.role==="teacher").length,color:"#10B981",icon:"👩‍🏫"},{label:"Activos",value:users.filter(u=>u.status==="activo").length,color:"#F59E0B",icon:"✅"}].map((s,i)=>(
           <div key={i} style={{background:"white",borderRadius:14,padding:"14px 18px",boxShadow:"0 2px 12px rgba(0,0,0,.07)",borderTop:`3px solid ${s.color}`,flex:1,minWidth:110}}>
             <div style={{fontSize:20,marginBottom:4}}>{s.icon}</div>
             <div style={{fontSize:22,fontWeight:900,color:"#1a1a2e"}}>{s.value}</div>
@@ -631,7 +634,7 @@ function UserSection(){
                   <td style={{padding:"12px 14px",fontSize:12,color:"#888",fontWeight:600}}>{u.email}</td>
                   <td style={{padding:"12px 14px"}}><Badge text={roleLabel[u.role]||u.role} color={roleColor[u.role]||"#888"}/></td>
                   <td style={{padding:"12px 14px"}}><span style={{background:u.status==="activo"?"#DCFCE7":"#FEE2E2",color:u.status==="activo"?"#16A34A":"#EF4444",borderRadius:50,padding:"4px 11px",fontSize:11,fontWeight:800}}>{u.status==="activo"?"✅ Activo":"⛔ Inactivo"}</span></td>
-                  <td style={{padding:"12px 14px"}}><div style={{display:"flex",gap:5}}><button onClick={()=>openEdit(u)} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>✏️</button><button onClick={()=>handleDelete(u.id)} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>🗑️</button></div></td>
+                  <td style={{padding:"12px 14px"}}><div style={{display:"flex",gap:5}}><button onClick={()=>openEdit(u)} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>✏️</button><button onClick={()=>handleDelete(u.id)} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>🗑️</button></div></td>
                 </tr>
               ))}
               {filtered.length===0&&<tr><td colSpan={5} style={{padding:"40px 0",textAlign:"center",color:"#ccc",fontSize:14,fontWeight:700}}>{users.length===0?"👥 Sin usuarios registrados":"🔍 Sin resultados"}</td></tr>}
@@ -643,8 +646,8 @@ function UserSection(){
       {modal!==null&&(
         <div style={{position:"fixed",inset:0,background:"rgba(10,10,30,.75)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",backdropFilter:"blur(4px)"}} onClick={e=>e.target===e.currentTarget&&setModal(null)}>
           <div style={{background:"#f8f9ff",borderRadius:24,width:"100%",maxWidth:480,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
-            <div style={{background:"linear-gradient(135deg,#1a1a2e,#16213e)",padding:"22px 28px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <div><div style={{color:"#A78BFA",fontSize:11,fontWeight:800,textTransform:"uppercase",letterSpacing:"1.5px",marginBottom:3}}>{modal.id?"Editar usuario":"Nuevo usuario"}</div><div style={{color:"white",fontSize:17,fontWeight:800}}>👥 {form.name||"Sin nombre"}</div></div>
+            <div style={{background:"linear-gradient(135deg,#12393B,#0B7285)",padding:"22px 28px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <div><div style={{color:"#9B7FD4",fontSize:11,fontWeight:800,textTransform:"uppercase",letterSpacing:"1.5px",marginBottom:3}}>{modal.id?"Editar usuario":"Nuevo usuario"}</div><div style={{color:"white",fontSize:17,fontWeight:800}}>👥 {form.name||"Sin nombre"}</div></div>
               <button onClick={()=>setModal(null)} style={{background:"rgba(255,255,255,.1)",border:"none",color:"white",width:34,height:34,borderRadius:50,cursor:"pointer",fontSize:18}}>×</button>
             </div>
             <div style={{padding:"22px 28px",display:"flex",flexDirection:"column",gap:12}}>
@@ -668,7 +671,7 @@ function UserSection(){
             </div>
             <div style={{padding:"14px 28px 22px",display:"flex",gap:10,justifyContent:"flex-end",borderTop:"2px solid #f0f0f0"}}>
               <button onClick={()=>setModal(null)} style={{background:"white",border:"2px solid #e0e0e0",borderRadius:50,padding:"10px 22px",fontSize:14,fontWeight:700,cursor:"pointer",color:"#555",fontFamily:"inherit"}}>Cancelar</button>
-              <button onClick={handleSave} style={{background:"linear-gradient(135deg,#A78BFA,#6366F1)",border:"none",borderRadius:50,padding:"10px 26px",fontSize:14,fontWeight:800,cursor:"pointer",color:"white",fontFamily:"inherit"}}>{modal.id?"💾 Guardar":"✅ Crear"}</button>
+              <button onClick={handleSave} style={{background:"linear-gradient(135deg,#17A2A8,#F5A623)",border:"none",borderRadius:50,padding:"10px 26px",fontSize:14,fontWeight:800,cursor:"pointer",color:"white",fontFamily:"inherit"}}>{modal.id?"💾 Guardar":"✅ Crear"}</button>
             </div>
           </div>
         </div>
@@ -702,7 +705,7 @@ function AdminPanel(){
     }else{
       const{data,error}=await supabase.from("activities").insert(payload).select().single();
       if(error)showToast("❌ Error al crear","#EF4444");
-      else{setActivities(prev=>[data,...prev]);showToast("🎉 Actividad creada","#6366F1");}
+      else{setActivities(prev=>[data,...prev]);showToast("🎉 Actividad creada","#17A2A8");}
     }
     setSaving(false);setModal(null);
   };
@@ -729,12 +732,11 @@ function AdminPanel(){
 
       {/* MOBILE: top bar */}
       {isMobile&&(
-        <div style={{background:"#1a1a2e",padding:"14px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:50}}>
+        <div style={{background:"#12393B",padding:"14px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:50}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <button onClick={()=>setMobileMenuOpen(o=>!o)} style={{background:"rgba(255,255,255,.1)",border:"none",color:"white",width:36,height:36,borderRadius:8,cursor:"pointer",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center"}}>☰</button>
-            <div><div style={{color:"white",fontWeight:900,fontSize:14}}>STEAM Admin</div><div style={{color:"#A78BFA",fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px"}}>Panel de control</div></div>
+            <img src="/logo.png" alt="Sinapsis STEAM" style={{height:26}}/>
           </div>
-          <div style={{fontSize:20}}>🔬🎨🔢</div>
         </div>
       )}
 
@@ -742,46 +744,46 @@ function AdminPanel(){
       {isMobile&&mobileMenuOpen&&(
         <div style={{position:"fixed",inset:0,zIndex:100,display:"flex"}}>
           <div style={{background:"rgba(0,0,0,.5)",flex:1}} onClick={()=>setMobileMenuOpen(false)}/>
-          <div style={{width:240,background:"#1a1a2e",display:"flex",flexDirection:"column",padding:"24px 0",height:"100vh",overflowY:"auto"}}>
-            <div style={{padding:"0 18px 22px"}}><div style={{fontSize:22,marginBottom:4}}>🔬🎨🔢</div><div style={{color:"white",fontWeight:900,fontSize:15}}>STEAM Admin</div><div style={{color:"#A78BFA",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px"}}>Panel de control</div></div>
+          <div style={{width:240,background:"#12393B",display:"flex",flexDirection:"column",padding:"24px 0",height:"100vh",overflowY:"auto"}}>
+            <div style={{padding:"0 18px 22px"}}><img src="/logo.png" alt="Sinapsis STEAM" style={{height:32,marginBottom:6}}/><div style={{color:"#9B7FD4",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px"}}>Panel de control</div></div>
             <div style={{borderTop:"1px solid rgba(255,255,255,.08)",paddingTop:12,flex:1}}>
               {[{id:"dashboard",icon:"📊",label:"Dashboard"},{id:"actividades",icon:"🔬",label:"Actividades"},{id:"usuarios",icon:"👥",label:"Usuarios"}].map(item=>(
-                <button key={item.id} onClick={()=>{setSection(item.id);setMobileMenuOpen(false);}} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"13px 18px",border:"none",cursor:"pointer",textAlign:"left",background:section===item.id?"rgba(167,139,250,.18)":"transparent",borderLeft:section===item.id?"3px solid #A78BFA":"3px solid transparent",color:section===item.id?"#A78BFA":"rgba(255,255,255,.55)",fontSize:14,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>
+                <button key={item.id} onClick={()=>{setSection(item.id);setMobileMenuOpen(false);}} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"13px 18px",border:"none",cursor:"pointer",textAlign:"left",background:section===item.id?"rgba(155,127,212,.18)":"transparent",borderLeft:section===item.id?"3px solid #9B7FD4":"3px solid transparent",color:section===item.id?"#9B7FD4":"rgba(255,255,255,.55)",fontSize:14,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>
                   <span style={{fontSize:18}}>{item.icon}</span>{item.label}
                 </button>
               ))}
             </div>
-            <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,.08)"}}><div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#A78BFA,#6366F1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>👩</div><div><div style={{color:"white",fontSize:12,fontWeight:800}}>Admin</div><div style={{color:"rgba(255,255,255,.4)",fontSize:10}}>steam@edu.com</div></div></div></div>
+            <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,.08)"}}><div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#17A2A8,#F5A623)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>👩</div><div><div style={{color:"white",fontSize:12,fontWeight:800}}>Admin</div><div style={{color:"rgba(255,255,255,.4)",fontSize:10}}>steam@edu.com</div></div></div></div>
           </div>
         </div>
       )}
 
       {/* DESKTOP: sidebar */}
       {!isMobile&&(
-        <div style={{width:215,background:"#1a1a2e",display:"flex",flexDirection:"column",padding:"24px 0",position:"sticky",top:0,height:"100vh",flexShrink:0}}>
-          <div style={{padding:"0 18px 22px"}}><div style={{fontSize:22,marginBottom:4}}>🔬🎨🔢</div><div style={{color:"white",fontWeight:900,fontSize:15}}>STEAM Admin</div><div style={{color:"#A78BFA",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px"}}>Panel de control</div></div>
+        <div style={{width:215,background:"#12393B",display:"flex",flexDirection:"column",padding:"24px 0",position:"sticky",top:0,height:"100vh",flexShrink:0}}>
+          <div style={{padding:"0 18px 22px"}}><img src="/logo.png" alt="Sinapsis STEAM" style={{height:32,marginBottom:6}}/><div style={{color:"#9B7FD4",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px"}}>Panel de control</div></div>
           <div style={{borderTop:"1px solid rgba(255,255,255,.08)",paddingTop:12,flex:1}}>
             {[{id:"dashboard",icon:"📊",label:"Dashboard"},{id:"actividades",icon:"🔬",label:"Actividades"},{id:"usuarios",icon:"👥",label:"Usuarios"}].map(item=>(
-              <button key={item.id} onClick={()=>setSection(item.id)} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"11px 18px",border:"none",cursor:"pointer",textAlign:"left",background:section===item.id?"rgba(167,139,250,.18)":"transparent",borderLeft:section===item.id?"3px solid #A78BFA":"3px solid transparent",color:section===item.id?"#A78BFA":"rgba(255,255,255,.55)",fontSize:13,fontWeight:700,fontFamily:"'Nunito',sans-serif",transition:"all .15s"}}>
+              <button key={item.id} onClick={()=>setSection(item.id)} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"11px 18px",border:"none",cursor:"pointer",textAlign:"left",background:section===item.id?"rgba(155,127,212,.18)":"transparent",borderLeft:section===item.id?"3px solid #9B7FD4":"3px solid transparent",color:section===item.id?"#9B7FD4":"rgba(255,255,255,.55)",fontSize:13,fontWeight:700,fontFamily:"'Nunito',sans-serif",transition:"all .15s"}}>
                 <span style={{fontSize:16}}>{item.icon}</span>{item.label}
               </button>
             ))}
           </div>
-          <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,.08)"}}><div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#A78BFA,#6366F1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>👩</div><div><div style={{color:"white",fontSize:12,fontWeight:800}}>Admin</div><div style={{color:"rgba(255,255,255,.4)",fontSize:10}}>steam@edu.com</div></div></div></div>
+          <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,.08)"}}><div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#17A2A8,#F5A623)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>👩</div><div><div style={{color:"white",fontSize:12,fontWeight:800}}>Admin</div><div style={{color:"rgba(255,255,255,.4)",fontSize:10}}>steam@edu.com</div></div></div></div>
         </div>
       )}
 
       <div style={{flex:1,overflowY:"auto",minWidth:0}}>
         <div style={{background:"white",padding:isMobile?"12px 16px":"15px 28px",display:"flex",justifyContent:"space-between",alignItems:"center",boxShadow:"0 2px 12px rgba(0,0,0,.06)",position:"sticky",top:isMobile?50:0,zIndex:10}}>
           <div><h1 style={{fontSize:isMobile?16:19,fontWeight:900,color:"#1a1a2e"}}>{section==="dashboard"?"📊 Dashboard":section==="actividades"?"🔬 Actividades":"👥 Usuarios"}</h1><p style={{color:"#bbb",fontSize:11,fontWeight:600,marginTop:1}}>{section==="dashboard"?"Resumen general":section==="actividades"?`${activities.length} actividades · ${published} publicadas`:"Gestión de usuarios"}</p></div>
-          {section==="actividades"&&<button onClick={()=>setModal({type:"edit",activity:{}})} style={{background:"linear-gradient(135deg,#A78BFA,#6366F1)",border:"none",borderRadius:50,padding:isMobile?"8px 14px":"9px 20px",color:"white",fontWeight:800,fontSize:isMobile?12:13,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>+ Nueva</button>}
+          {section==="actividades"&&<button onClick={()=>setModal({type:"edit",activity:{}})} style={{background:"linear-gradient(135deg,#17A2A8,#F5A623)",border:"none",borderRadius:50,padding:isMobile?"8px 14px":"9px 20px",color:"white",fontWeight:800,fontSize:isMobile?12:13,cursor:"pointer",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>+ Nueva</button>}
         </div>
 
         <div style={{padding:isMobile?"16px 12px 100px":"24px 28px"}}>
           {section==="dashboard"&&(
             <div>
               <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"repeat(4,1fr)",gap:isMobile?10:16,marginBottom:22}}>
-                {[{icon:"👁️",label:"Vistas totales",value:totalViews,sub:"↑ +12% esta semana",color:"#6366F1"},{icon:"✅",label:"Publicadas",value:published,sub:`de ${activities.length} totales`,color:"#10B981"},{icon:"🔬",label:"Actividades",value:activities.length,sub:"En Supabase",color:"#F59E0B"},{icon:"🏆",label:"Más popular",value:top?.emoji||"🔬",sub:top?.title.split(" ").slice(0,2).join(" ")||"",color:"#EC4899"}].map((s,i)=>(
+                {[{icon:"👁️",label:"Vistas totales",value:totalViews,sub:"↑ +12% esta semana",color:"#17A2A8"},{icon:"✅",label:"Publicadas",value:published,sub:`de ${activities.length} totales`,color:"#10B981"},{icon:"🔬",label:"Actividades",value:activities.length,sub:"En Supabase",color:"#F59E0B"},{icon:"🏆",label:"Más popular",value:top?.emoji||"🔬",sub:top?.title.split(" ").slice(0,2).join(" ")||"",color:"#EC4899"}].map((s,i)=>(
                   <div key={i} style={{background:"white",borderRadius:14,padding:"14px 16px",boxShadow:"0 2px 14px rgba(0,0,0,.07)",borderTop:`4px solid ${s.color}`}}>
                     <div style={{fontSize:20,marginBottom:4}}>{s.icon}</div><div style={{fontSize:isMobile?20:26,fontWeight:900,color:"#1a1a2e"}}>{s.value}</div><div style={{fontSize:11,fontWeight:700,color:"#aaa",marginTop:1}}>{s.label}</div><div style={{fontSize:10,color:s.color,fontWeight:700,marginTop:3}}>{s.sub}</div>
                   </div>
@@ -793,7 +795,7 @@ function AdminPanel(){
                   <div style={{display:"flex",alignItems:"flex-end",gap:8,height:120}}>
                     {weekData.map((d,i)=>(
                       <div key={i} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:5,height:"100%"}}>
-                        <div style={{flex:1,width:"100%",display:"flex",alignItems:"flex-end",justifyContent:"center"}}><div style={{width:"100%",borderRadius:"6px 6px 0 0",background:"linear-gradient(180deg,#A78BFA,#6366F1)",height:`${(d.v/120)*100}%`,minHeight:4,position:"relative"}}><div style={{position:"absolute",top:-18,left:"50%",transform:"translateX(-50%)",fontSize:9,fontWeight:800,color:"#6366F1",whiteSpace:"nowrap"}}>{d.v}</div></div></div>
+                        <div style={{flex:1,width:"100%",display:"flex",alignItems:"flex-end",justifyContent:"center"}}><div style={{width:"100%",borderRadius:"6px 6px 0 0",background:"linear-gradient(180deg,#9B7FD4,#17A2A8)",height:`${(d.v/120)*100}%`,minHeight:4,position:"relative"}}><div style={{position:"absolute",top:-18,left:"50%",transform:"translateX(-50%)",fontSize:9,fontWeight:800,color:"#17A2A8",whiteSpace:"nowrap"}}>{d.v}</div></div></div>
                         <div style={{fontSize:10,fontWeight:700,color:"#bbb"}}>{d.d}</div>
                       </div>
                     ))}
@@ -803,10 +805,10 @@ function AdminPanel(){
                   <h2 style={{fontSize:14,fontWeight:900,color:"#1a1a2e",marginBottom:18}}>🏆 Top actividades</h2>
                   {[...activities].sort((a,b)=>b.views-a.views).slice(0,5).map((act,i)=>(
                     <div key={act.id} style={{display:"flex",alignItems:"center",gap:10,marginBottom:12,padding:"6px 10px",borderRadius:10,background:i===0?"#faf5ff":"transparent"}}>
-                      <div style={{fontSize:14,width:22,textAlign:"center",fontWeight:900,color:i===0?"#A78BFA":i===1?"#F59E0B":i===2?"#EC4899":"#ddd"}}>{i===0?"🥇":i===1?"🥈":i===2?"🥉":`#${i+1}`}</div>
+                      <div style={{fontSize:14,width:22,textAlign:"center",fontWeight:900,color:i===0?"#9B7FD4":i===1?"#F59E0B":i===2?"#EC4899":"#ddd"}}>{i===0?"🥇":i===1?"🥈":i===2?"🥉":`#${i+1}`}</div>
                       <div style={{fontSize:18}}>{act.emoji}</div>
-                      <div style={{flex:1,minWidth:0}}><div style={{fontSize:12,fontWeight:800,color:"#1a1a2e",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.title}</div><div style={{marginTop:4,background:"#f0f0f0",borderRadius:50,height:4,overflow:"hidden"}}><div style={{height:"100%",borderRadius:50,background:act.category_color||"#A78BFA",width:`${(act.views/(top?.views||1))*100}%`}}/></div></div>
-                      <div style={{fontSize:12,fontWeight:800,color:"#6366F1",minWidth:32,textAlign:"right"}}>{act.views}</div>
+                      <div style={{flex:1,minWidth:0}}><div style={{fontSize:12,fontWeight:800,color:"#1a1a2e",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.title}</div><div style={{marginTop:4,background:"#f0f0f0",borderRadius:50,height:4,overflow:"hidden"}}><div style={{height:"100%",borderRadius:50,background:act.category_color||"#9B7FD4",width:`${(act.views/(top?.views||1))*100}%`}}/></div></div>
+                      <div style={{fontSize:12,fontWeight:800,color:"#17A2A8",minWidth:32,textAlign:"right"}}>{act.views}</div>
                     </div>
                   ))}
                 </div>
@@ -829,14 +831,14 @@ function AdminPanel(){
                           <div><div style={{fontSize:14,fontWeight:800,color:"#1a1a2e"}}>{act.title}</div><div style={{fontSize:11,color:"#bbb",fontWeight:600}}>⏱️ {act.time} · 👶 {act.age}</div></div>
                         </div>
                         <div style={{display:"flex",gap:6}}>
-                          <button onClick={()=>setModal({type:"edit",activity:act})} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:8,padding:"6px 10px",fontSize:12,fontWeight:800,cursor:"pointer"}}>✏️</button>
+                          <button onClick={()=>setModal({type:"edit",activity:act})} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:8,padding:"6px 10px",fontSize:12,fontWeight:800,cursor:"pointer"}}>✏️</button>
                           <button onClick={()=>setModal({type:"delete",activity:act})} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:8,padding:"6px 10px",fontSize:12,fontWeight:800,cursor:"pointer"}}>🗑️</button>
                         </div>
                       </div>
                       <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
                         <Badge text={act.category} color={catColor[act.category]||"#888"}/>
                         <Badge text={act.difficulty} color={diffColor[act.difficulty]||"#888"}/>
-                        <span style={{fontSize:11,color:"#6366F1",fontWeight:800}}>👁️ {act.views}</span>
+                        <span style={{fontSize:11,color:"#17A2A8",fontWeight:800}}>👁️ {act.views}</span>
                         <button onClick={()=>toggleStatus(act.id,act.status)} style={{background:act.status==="publicado"?"#DCFCE7":"#FEF3C7",color:act.status==="publicado"?"#16A34A":"#D97706",border:"none",borderRadius:50,padding:"3px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif",marginLeft:"auto"}}>{act.status==="publicado"?"✅ Publicado":"📝 Borrador"}</button>
                       </div>
                     </div>
@@ -853,9 +855,9 @@ function AdminPanel(){
                           <td style={{padding:"12px 14px"}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:20}}>{act.emoji}</span><div><div style={{fontSize:13,fontWeight:800,color:"#1a1a2e"}}>{act.title}</div><div style={{fontSize:10,color:"#bbb",fontWeight:600}}>⏱️ {act.time} · 👶 {act.age}</div></div></div></td>
                           <td style={{padding:"12px 14px"}}><Badge text={act.category} color={catColor[act.category]||"#888"}/></td>
                           <td style={{padding:"12px 14px"}}><Badge text={act.difficulty} color={diffColor[act.difficulty]||"#888"}/></td>
-                          <td style={{padding:"12px 14px",fontSize:12,fontWeight:800,color:"#6366F1"}}>{act.views}</td>
+                          <td style={{padding:"12px 14px",fontSize:12,fontWeight:800,color:"#17A2A8"}}>{act.views}</td>
                           <td style={{padding:"12px 14px"}}><button onClick={()=>toggleStatus(act.id,act.status)} style={{background:act.status==="publicado"?"#DCFCE7":"#FEF3C7",color:act.status==="publicado"?"#16A34A":"#D97706",border:"none",borderRadius:50,padding:"4px 11px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>{act.status==="publicado"?"✅ Publicado":"📝 Borrador"}</button></td>
-                          <td style={{padding:"12px 14px"}}><div style={{display:"flex",gap:5}}><button onClick={()=>setModal({type:"edit",activity:act})} style={{background:"#EDE9FE",color:"#7C3AED",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>✏️</button><button onClick={()=>setModal({type:"delete",activity:act})} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>🗑️</button></div></td>
+                          <td style={{padding:"12px 14px"}}><div style={{display:"flex",gap:5}}><button onClick={()=>setModal({type:"edit",activity:act})} style={{background:"#DFF6F6",color:"#0B7285",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>✏️</button><button onClick={()=>setModal({type:"delete",activity:act})} style={{background:"#FEE2E2",color:"#EF4444",border:"none",borderRadius:7,padding:"5px 10px",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>🗑️</button></div></td>
                         </tr>
                       ))}
                     </tbody>
@@ -903,12 +905,11 @@ function LoginScreen({onLogin}){
   };
 
   return(
-    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#2d1b4e 0%,#5b3d8a 45%,#2e9e6b 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0B7285 0%,#17A2A8 55%,#F5A623 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
       <div style={{background:"white",borderRadius:24,width:"100%",maxWidth:400,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
-        <div style={{background:"linear-gradient(135deg,#1a1a2e,#2d1b4e)",padding:"32px 32px 28px",textAlign:"center"}}>
-          <div style={{fontSize:36,marginBottom:8}}>🔬🎨🔢</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:24,color:"white",fontWeight:800}}>Sinapsis</div>
-          <div style={{color:"#A78BFA",fontSize:12,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",marginTop:4}}>Panel de administración</div>
+        <div style={{background:"linear-gradient(135deg,#12393B,#0B7285)",padding:"32px 32px 28px",textAlign:"center"}}>
+          <img src="/logo.png" alt="Sinapsis STEAM" style={{height:44,marginBottom:8}}/>
+          <div style={{color:"#9B7FD4",fontSize:12,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",marginTop:4}}>Panel de administración</div>
         </div>
         <form onSubmit={handleLogin} style={{padding:"28px 32px 32px"}}>
           <div style={{marginBottom:16}}>
@@ -916,7 +917,7 @@ function LoginScreen({onLogin}){
             <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required
               style={{width:"100%",padding:"11px 14px",borderRadius:10,border:"2px solid #E5E7EB",fontSize:14,fontFamily:"inherit",outline:"none",background:"white",boxSizing:"border-box",color:"#1a1a2e",transition:"border .15s"}}
               placeholder="admin@sinapsis.com"
-              onFocus={e=>e.target.style.borderColor="#5b3d8a"}
+              onFocus={e=>e.target.style.borderColor="#0B7285"}
               onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
           </div>
           <div style={{marginBottom:20}}>
@@ -924,11 +925,11 @@ function LoginScreen({onLogin}){
             <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required
               style={{width:"100%",padding:"11px 14px",borderRadius:10,border:"2px solid #E5E7EB",fontSize:14,fontFamily:"inherit",outline:"none",background:"white",boxSizing:"border-box",color:"#1a1a2e",transition:"border .15s"}}
               placeholder="••••••••"
-              onFocus={e=>e.target.style.borderColor="#5b3d8a"}
+              onFocus={e=>e.target.style.borderColor="#0B7285"}
               onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
           </div>
           {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
-          <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:16,fontWeight:800,cursor:loading?"not-allowed":"pointer",transition:"opacity .15s"}}>
+          <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:16,fontWeight:800,cursor:loading?"not-allowed":"pointer",transition:"opacity .15s"}}>
             {loading?"Verificando...":"Iniciar sesión →"}
           </button>
           <div style={{textAlign:"center",marginTop:16,fontSize:12,color:"#bbb",fontWeight:600}}>Solo acceso para administradores</div>
@@ -943,7 +944,7 @@ function LoginScreen({onLogin}){
 // ─────────────────────────────────────────────────────────────────────────────
 const PLAN_LIMITS = { free: 3, premium: 999 };
 const PLAN_NAMES  = { free:"Free", premium:"Premium" };
-const PLAN_COLORS = { free:"#6366F1", premium:"#10B981" };
+const PLAN_COLORS = { free:"#17A2A8", premium:"#10B981" };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // USER AUTH SCREEN — Login + Registro de usuarios finales
@@ -993,12 +994,11 @@ function UserAuthScreen({onAuth}){
   };
 
   return(
-    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#2d1b4e 0%,#5b3d8a 45%,#2e9e6b 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0B7285 0%,#17A2A8 55%,#F5A623 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
       <div style={{background:"white",borderRadius:24,width:"100%",maxWidth:420,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
         {/* Header */}
-        <div style={{background:"linear-gradient(135deg,#1a1a2e,#2d1b4e)",padding:"28px 32px 24px",textAlign:"center"}}>
-          <div style={{fontSize:32,marginBottom:6}}>🔬🎨🔢</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:22,color:"white",fontWeight:800}}>Sinapsis</div>
+        <div style={{background:"linear-gradient(135deg,#12393B,#0B7285)",padding:"28px 32px 24px",textAlign:"center"}}>
+          <img src="/logo.png" alt="Sinapsis STEAM" style={{height:40,marginBottom:6}}/>
           <div style={{color:"rgba(255,255,255,.6)",fontSize:12,fontWeight:600,marginTop:4}}>Conectando mentes curiosas con el mundo STEAM</div>
         </div>
 
@@ -1006,7 +1006,7 @@ function UserAuthScreen({onAuth}){
         <div style={{display:"flex",borderBottom:"2px solid #f0f0f0"}}>
           {[{id:"login",label:"Iniciar sesión"},{id:"register",label:"Registrarse"}].map(t=>(
             <button key={t.id} onClick={()=>{setTab(t.id);setError("");setInfo("");setRecover(false);}}
-              style={{flex:1,padding:"14px",border:"none",background:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:tab===t.id?"#5b3d8a":"#aaa",borderBottom:tab===t.id?"3px solid #5b3d8a":"3px solid transparent",transition:"all .15s"}}>
+              style={{flex:1,padding:"14px",border:"none",background:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:tab===t.id?"#0B7285":"#aaa",borderBottom:tab===t.id?"3px solid #0B7285":"3px solid transparent",transition:"all .15s"}}>
               {t.label}
             </button>
           ))}
@@ -1020,15 +1020,15 @@ function UserAuthScreen({onAuth}){
                 <div style={{marginBottom:20}}>
                   <label style={lStyle}>Email</label>
                   <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required style={iStyle} placeholder="tu@email.com"
-                    onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                    onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
                 </div>
                 {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
                 {info&&<div style={{background:"#D1FAE5",color:"#10B981",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>✅ {info}</div>}
-                <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+                <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
                   {loading?"Enviando...":"Enviar enlace →"}
                 </button>
                 <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>
-                  <button type="button" onClick={()=>{setRecover(false);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>← Volver a iniciar sesión</button>
+                  <button type="button" onClick={()=>{setRecover(false);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#0B7285",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>← Volver a iniciar sesión</button>
                 </div>
               </form>
             ) : (
@@ -1036,21 +1036,21 @@ function UserAuthScreen({onAuth}){
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Email</label>
                 <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required style={iStyle} placeholder="tu@email.com"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               <div style={{marginBottom:10}}>
                 <label style={lStyle}>Contraseña</label>
                 <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required style={iStyle} placeholder="••••••••"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               <div style={{textAlign:"right",marginBottom:16}}>
-                <button type="button" onClick={()=>{setRecover(true);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:700,cursor:"pointer",fontFamily:"inherit",fontSize:11.5}}>¿Olvidaste tu contraseña?</button>
+                <button type="button" onClick={()=>{setRecover(true);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#0B7285",fontWeight:700,cursor:"pointer",fontFamily:"inherit",fontSize:11.5}}>¿Olvidaste tu contraseña?</button>
               </div>
               {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
-              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
                 {loading?"Verificando...":"Entrar →"}
               </button>
-              <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>¿No tenés cuenta? <button type="button" onClick={()=>setTab("register")} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>Registrate</button></div>
+              <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>¿No tenés cuenta? <button type="button" onClick={()=>setTab("register")} style={{background:"none",border:"none",color:"#0B7285",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>Registrate</button></div>
             </form>
             )
           ) : (
@@ -1058,17 +1058,17 @@ function UserAuthScreen({onAuth}){
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Nombre completo</label>
                 <input value={name} onChange={e=>setName(e.target.value)} required style={iStyle} placeholder="Tu nombre"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Email</label>
                 <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required style={iStyle} placeholder="tu@email.com"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Contraseña</label>
                 <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required style={iStyle} placeholder="Mínimo 6 caracteres"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               {/* Selector de plan */}
               <div style={{marginBottom:20}}>
@@ -1085,10 +1085,10 @@ function UserAuthScreen({onAuth}){
                 </div>
               </div>
               {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
-              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
                 {loading?"Creando cuenta...":"Crear cuenta →"}
               </button>
-              <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>¿Ya tenés cuenta? <button type="button" onClick={()=>setTab("login")} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>Iniciá sesión</button></div>
+              <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>¿Ya tenés cuenta? <button type="button" onClick={()=>setTab("login")} style={{background:"none",border:"none",color:"#0B7285",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>Iniciá sesión</button></div>
             </form>
           )}
         </div>
@@ -1123,11 +1123,10 @@ function SetNewPasswordScreen({onDone}){
   };
 
   return(
-    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#2d1b4e 0%,#5b3d8a 45%,#2e9e6b 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0B7285 0%,#17A2A8 55%,#F5A623 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
       <div style={{background:"white",borderRadius:24,width:"100%",maxWidth:420,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
-        <div style={{background:"linear-gradient(135deg,#1a1a2e,#2d1b4e)",padding:"28px 32px 24px",textAlign:"center"}}>
-          <div style={{fontSize:32,marginBottom:6}}>🔬🎨🔢</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:22,color:"white",fontWeight:800}}>Sinapsis</div>
+        <div style={{background:"linear-gradient(135deg,#12393B,#0B7285)",padding:"28px 32px 24px",textAlign:"center"}}>
+          <img src="/logo.png" alt="Sinapsis STEAM" style={{height:40,marginBottom:6}}/>
           <div style={{color:"rgba(255,255,255,.6)",fontSize:12,fontWeight:600,marginTop:4}}>Definí tu nueva contraseña</div>
         </div>
         <div style={{padding:"24px 32px 32px"}}>
@@ -1138,15 +1137,15 @@ function SetNewPasswordScreen({onDone}){
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Nueva contraseña</label>
                 <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required style={iStyle} placeholder="Mínimo 6 caracteres"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               <div style={{marginBottom:20}}>
                 <label style={lStyle}>Repetir contraseña</label>
                 <input value={pass2} onChange={e=>setPass2(e.target.value)} type="password" required style={iStyle} placeholder="Repetí la contraseña"
-                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                  onFocus={e=>e.target.style.borderColor="#0B7285"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
               {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
-              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
                 {loading?"Guardando...":"Guardar contraseña →"}
               </button>
             </form>
@@ -1213,7 +1212,7 @@ export default function Root(){
   // Logout de usuario final
   const handleUserLogout=async()=>{
     await supabase.auth.signOut(); setUser(null); setUserData(null);
-    showToast("Sesión cerrada","#6366F1");
+    showToast("Sesión cerrada","#17A2A8");
   };
 
   // Estilo compartido
@@ -1240,9 +1239,9 @@ export default function Root(){
       <AppContext.Provider value={{activities,setActivities,loading,trackView,showToast,user,userData}}>
         <style>{css}</style>
         <LoginScreen onLogin={()=>setAdminLoggedIn(true)}/>
-        <div style={{position:"fixed",bottom:24,left:"50%",transform:"translateX(-50%)",zIndex:500,display:"flex",background:"#1a1a2e",borderRadius:50,padding:5,boxShadow:"0 8px 32px rgba(0,0,0,.35)",gap:4}}>
+        <div style={{position:"fixed",bottom:24,left:"50%",transform:"translateX(-50%)",zIndex:500,display:"flex",background:"#12393B",borderRadius:50,padding:5,boxShadow:"0 8px 32px rgba(0,0,0,.35)",gap:4}}>
           {[{id:"public",icon:"🌐",label:"App pública"},{id:"admin",icon:"⚙️",label:"Panel admin"}].map(m=>(
-            <button key={m.id} onClick={()=>setMode(m.id)} style={{padding:"9px 20px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,transition:"all .2s",background:mode===m.id?"linear-gradient(135deg,#A78BFA,#6366F1)":"transparent",color:mode===m.id?"white":"rgba(255,255,255,.5)"}}>
+            <button key={m.id} onClick={()=>setMode(m.id)} style={{padding:"9px 20px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,transition:"all .2s",background:mode===m.id?"linear-gradient(135deg,#17A2A8,#F5A623)":"transparent",color:mode===m.id?"white":"rgba(255,255,255,.5)"}}>
               {m.icon} {m.label}
             </button>
           ))}
@@ -1258,7 +1257,7 @@ export default function Root(){
         <style>{css}</style>
         <UserAuthScreen onAuth={handleUserAuth}/>
         <div style={{position:"fixed",bottom:24,left:"50%",transform:"translateX(-50%)",zIndex:500}}>
-          <button onClick={()=>setShowUserAuth(false)} style={{padding:"9px 20px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,background:"#1a1a2e",color:"rgba(255,255,255,.7)"}}>
+          <button onClick={()=>setShowUserAuth(false)} style={{padding:"9px 20px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,background:"#12393B",color:"rgba(255,255,255,.7)"}}>
             ← Volver a la app
           </button>
         </div>
@@ -1271,9 +1270,9 @@ export default function Root(){
       <style>{css}</style>
 
       {/* Switch bar */}
-      <div style={{position:"fixed",bottom:16,left:"50%",transform:"translateX(-50%)",zIndex:500,display:"flex",background:"#1a1a2e",borderRadius:50,padding:4,boxShadow:"0 8px 32px rgba(0,0,0,.35)",gap:3,alignItems:"center"}}>
+      <div style={{position:"fixed",bottom:16,left:"50%",transform:"translateX(-50%)",zIndex:500,display:"flex",background:"#12393B",borderRadius:50,padding:4,boxShadow:"0 8px 32px rgba(0,0,0,.35)",gap:3,alignItems:"center"}}>
         {[{id:"public",icon:"🌐",label:"App pública"},{id:"admin",icon:"⚙️",label:"Admin"}].map(m=>(
-          <button key={m.id} onClick={()=>setMode(m.id)} style={{padding:"8px 14px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,transition:"all .2s",background:mode===m.id?"linear-gradient(135deg,#A78BFA,#6366F1)":"transparent",color:mode===m.id?"white":"rgba(255,255,255,.5)",whiteSpace:"nowrap"}}>
+          <button key={m.id} onClick={()=>setMode(m.id)} style={{padding:"8px 14px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12,transition:"all .2s",background:mode===m.id?"linear-gradient(135deg,#17A2A8,#F5A623)":"transparent",color:mode===m.id?"white":"rgba(255,255,255,.5)",whiteSpace:"nowrap"}}>
             {m.icon} {m.label}
           </button>
         ))}
@@ -1284,7 +1283,7 @@ export default function Root(){
                 <span style={{background:PLAN_COLORS[userData?.plan||"free"],borderRadius:50,padding:"2px 7px",fontSize:9,fontWeight:900,color:"white"}}>{PLAN_NAMES[userData?.plan||"free"]}</span>
                 👤 {userData?.name?.split(" ")[0]||"Yo"} 🚪
               </button>
-            : <button onClick={()=>setShowUserAuth(true)} style={{padding:"8px 14px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:11,background:"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",whiteSpace:"nowrap"}}>
+            : <button onClick={()=>setShowUserAuth(true)} style={{padding:"8px 14px",borderRadius:50,border:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:11,background:"linear-gradient(135deg,#17A2A8,#F5A623)",color:"white",whiteSpace:"nowrap"}}>
                 Entrar / Registrarse
               </button>
         )}
