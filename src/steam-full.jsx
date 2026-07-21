@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js';
 // SUPABASE — conexión a la base de datos real
 // ─────────────────────────────────────────────────────────────────────────────
 const supabase = createClient(
-  "https://bdtofmztaydqlezsibjq.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkdG9mbXp0YXlkcWxlenNpYmpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MDIyMTMsImV4cCI6MjA4ODQ3ODIxM30.nd70DcR63k86SqHIoYfRMF8atKh2yfRtv30c8X_NKoM"
+  "https://jgejkbzzkvxtjbzghiqt.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnZWprYnp6a3Z4dGpiemdoaXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMzM4NjMsImV4cCI6MjA5OTgwOTg2M30.9Jgq3g7aq0vhitt5CePQ-VrP_5xC9zv8iWhD8gum8bU"
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
