@@ -874,18 +874,19 @@ function LoginScreen({onLogin}){
   const [error,setError]=useState("");
   const [loading,setLoading]=useState(false);
 
-  const ADMIN_EMAIL="steam@edu.com";
-  const ADMIN_PASS="sinapsis2024";
-
   const handleLogin=async e=>{
     e.preventDefault();
     setLoading(true);setError("");
-    await new Promise(r=>setTimeout(r,600));
-    if(email===ADMIN_EMAIL&&pass===ADMIN_PASS){
-      onLogin();
-    } else {
-      setError("Email o contraseña incorrectos");
+    const {error:authError} = await supabase.auth.signInWithPassword({email,password:pass});
+    if(authError){ setError("Email o contraseña incorrectos"); setLoading(false); return; }
+    const {data:userData} = await supabase.from("users_app").select("*").eq("email",email).single();
+    if(userData?.role!=="admin"){
+      await supabase.auth.signOut();
+      setError("Esta cuenta no tiene permisos de administrador");
+      setLoading(false);
+      return;
     }
+    onLogin();
     setLoading(false);
   };
 
@@ -942,6 +943,8 @@ function UserAuthScreen({onAuth}){
   const [name,setName]   = useState("");
   const [plan,setPlan]   = useState("free");
   const [error,setError] = useState("");
+  const [info,setInfo]   = useState("");
+  const [recover,setRecover] = useState(false);
   const [loading,setLoading] = useState(false);
 
   const iStyle = {width:"100%",padding:"11px 14px",borderRadius:10,border:"2px solid #E5E7EB",fontSize:14,fontFamily:"inherit",outline:"none",background:"white",boxSizing:"border-box",color:"#1a1a2e",transition:"border .15s"};
@@ -955,6 +958,14 @@ function UserAuthScreen({onAuth}){
     const {data:userData} = await supabase.from("users_app").select("*").eq("email",email).single();
     onAuth(data.user, userData);
     setLoading(false);
+  };
+
+  const handleForgotPassword = async e => {
+    e.preventDefault(); setLoading(true); setError(""); setInfo("");
+    const {error} = await supabase.auth.resetPasswordForEmail(email, {redirectTo: window.location.origin});
+    setLoading(false);
+    if(error){ setError(error.message); return; }
+    setInfo("Te enviamos un email con un enlace para restablecer tu contraseña.");
   };
 
   const handleRegister = async e => {
@@ -982,7 +993,7 @@ function UserAuthScreen({onAuth}){
         {/* Tabs */}
         <div style={{display:"flex",borderBottom:"2px solid #f0f0f0"}}>
           {[{id:"login",label:"Iniciar sesión"},{id:"register",label:"Registrarse"}].map(t=>(
-            <button key={t.id} onClick={()=>{setTab(t.id);setError("");}}
+            <button key={t.id} onClick={()=>{setTab(t.id);setError("");setInfo("");setRecover(false);}}
               style={{flex:1,padding:"14px",border:"none",background:"none",cursor:"pointer",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:14,color:tab===t.id?"#5b3d8a":"#aaa",borderBottom:tab===t.id?"3px solid #5b3d8a":"3px solid transparent",transition:"all .15s"}}>
               {t.label}
             </button>
@@ -991,16 +1002,37 @@ function UserAuthScreen({onAuth}){
 
         <div style={{padding:"24px 32px 32px"}}>
           {tab==="login" ? (
+            recover ? (
+              <form onSubmit={handleForgotPassword}>
+                <div style={{fontSize:12,color:"#888",fontWeight:600,marginBottom:16,textAlign:"center"}}>Ingresá tu email y te mandamos un enlace para restablecer tu contraseña.</div>
+                <div style={{marginBottom:20}}>
+                  <label style={lStyle}>Email</label>
+                  <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required style={iStyle} placeholder="tu@email.com"
+                    onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+                </div>
+                {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
+                {info&&<div style={{background:"#D1FAE5",color:"#10B981",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>✅ {info}</div>}
+                <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+                  {loading?"Enviando...":"Enviar enlace →"}
+                </button>
+                <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>
+                  <button type="button" onClick={()=>{setRecover(false);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>← Volver a iniciar sesión</button>
+                </div>
+              </form>
+            ) : (
             <form onSubmit={handleLogin}>
               <div style={{marginBottom:14}}>
                 <label style={lStyle}>Email</label>
                 <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required style={iStyle} placeholder="tu@email.com"
                   onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
               </div>
-              <div style={{marginBottom:20}}>
+              <div style={{marginBottom:10}}>
                 <label style={lStyle}>Contraseña</label>
                 <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required style={iStyle} placeholder="••••••••"
                   onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+              </div>
+              <div style={{textAlign:"right",marginBottom:16}}>
+                <button type="button" onClick={()=>{setRecover(true);setError("");setInfo("");}} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:700,cursor:"pointer",fontFamily:"inherit",fontSize:11.5}}>¿Olvidaste tu contraseña?</button>
               </div>
               {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
               <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
@@ -1008,6 +1040,7 @@ function UserAuthScreen({onAuth}){
               </button>
               <div style={{textAlign:"center",marginTop:14,fontSize:12,color:"#bbb",fontWeight:600}}>¿No tenés cuenta? <button type="button" onClick={()=>setTab("register")} style={{background:"none",border:"none",color:"#5b3d8a",fontWeight:800,cursor:"pointer",fontFamily:"inherit",fontSize:12}}>Registrate</button></div>
             </form>
+            )
           ) : (
             <form onSubmit={handleRegister}>
               <div style={{marginBottom:14}}>
@@ -1053,6 +1086,66 @@ function UserAuthScreen({onAuth}){
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// SET NEW PASSWORD — pantalla que aparece al volver del enlace de recuperación
+// ─────────────────────────────────────────────────────────────────────────────
+function SetNewPasswordScreen({onDone}){
+  const [pass,setPass]   = useState("");
+  const [pass2,setPass2] = useState("");
+  const [error,setError] = useState("");
+  const [loading,setLoading] = useState(false);
+  const [ok,setOk] = useState(false);
+
+  const iStyle = {width:"100%",padding:"11px 14px",borderRadius:10,border:"2px solid #E5E7EB",fontSize:14,fontFamily:"inherit",outline:"none",background:"white",boxSizing:"border-box",color:"#1a1a2e",transition:"border .15s"};
+  const lStyle = {display:"block",fontSize:11,fontWeight:800,color:"#888",textTransform:"uppercase",letterSpacing:"0.8px",marginBottom:5};
+
+  const handleSubmit = async e => {
+    e.preventDefault(); setError("");
+    if(pass.length<6){ setError("La contraseña debe tener al menos 6 caracteres"); return; }
+    if(pass!==pass2){ setError("Las contraseñas no coinciden"); return; }
+    setLoading(true);
+    const {error} = await supabase.auth.updateUser({password:pass});
+    setLoading(false);
+    if(error){ setError(error.message); return; }
+    setOk(true);
+    setTimeout(()=>onDone(),1800);
+  };
+
+  return(
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#2d1b4e 0%,#5b3d8a 45%,#2e9e6b 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Nunito',sans-serif",padding:20}}>
+      <div style={{background:"white",borderRadius:24,width:"100%",maxWidth:420,boxShadow:"0 24px 80px rgba(0,0,0,.3)",overflow:"hidden"}}>
+        <div style={{background:"linear-gradient(135deg,#1a1a2e,#2d1b4e)",padding:"28px 32px 24px",textAlign:"center"}}>
+          <div style={{fontSize:32,marginBottom:6}}>🔬🎨🔢</div>
+          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:22,color:"white",fontWeight:800}}>Sinapsis</div>
+          <div style={{color:"rgba(255,255,255,.6)",fontSize:12,fontWeight:600,marginTop:4}}>Definí tu nueva contraseña</div>
+        </div>
+        <div style={{padding:"24px 32px 32px"}}>
+          {ok ? (
+            <div style={{background:"#D1FAE5",color:"#10B981",borderRadius:10,padding:"14px",fontSize:14,fontWeight:700,textAlign:"center"}}>✅ Contraseña actualizada. Ya podés iniciar sesión.</div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div style={{marginBottom:14}}>
+                <label style={lStyle}>Nueva contraseña</label>
+                <input value={pass} onChange={e=>setPass(e.target.value)} type="password" required style={iStyle} placeholder="Mínimo 6 caracteres"
+                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+              </div>
+              <div style={{marginBottom:20}}>
+                <label style={lStyle}>Repetir contraseña</label>
+                <input value={pass2} onChange={e=>setPass2(e.target.value)} type="password" required style={iStyle} placeholder="Repetí la contraseña"
+                  onFocus={e=>e.target.style.borderColor="#5b3d8a"} onBlur={e=>e.target.style.borderColor="#E5E7EB"}/>
+              </div>
+              {error&&<div style={{background:"#FEE2E2",color:"#EF4444",borderRadius:10,padding:"10px 14px",fontSize:13,fontWeight:700,marginBottom:16,textAlign:"center"}}>⚠️ {error}</div>}
+              <button type="submit" disabled={loading} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:loading?"#ccc":"linear-gradient(135deg,#5b3d8a,#2e9e6b)",color:"white",fontFamily:"'Outfit',sans-serif",fontSize:15,fontWeight:800,cursor:loading?"not-allowed":"pointer"}}>
+                {loading?"Guardando...":"Guardar contraseña →"}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // ROOT — carga datos reales de Supabase
 // ─────────────────────────────────────────────────────────────────────────────
 export default function Root(){
@@ -1064,6 +1157,7 @@ export default function Root(){
   const [user,setUser]             = useState(null);   // usuario Supabase Auth
   const [userData,setUserData]     = useState(null);   // datos de users_app
   const [showUserAuth,setShowUserAuth] = useState(false);
+  const [showSetPassword,setShowSetPassword] = useState(false);
 
   const showToast=(msg,color="#10B981")=>{setToast({msg,color});setTimeout(()=>setToast(null),2800);};
 
@@ -1083,6 +1177,11 @@ export default function Root(){
           .then(({data})=>{ setUser(session.user); setUserData(data); });
       }
     });
+    // Detectar cuando el usuario vuelve del enlace de recuperación de contraseña
+    const {data:authSub} = supabase.auth.onAuthStateChange((event)=>{
+      if(event==="PASSWORD_RECOVERY") setShowSetPassword(true);
+    });
+    return ()=>authSub.subscription.unsubscribe();
   },[]);
 
   // Registrar vista — solo si tiene plan o es Free con actividades disponibles
@@ -1112,6 +1211,16 @@ export default function Root(){
     @keyframes toastIn{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
     @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   `;
+
+  // Pantalla para definir nueva contraseña (viene del enlace de recuperación por email)
+  if(showSetPassword){
+    return(
+      <>
+        <style>{css}</style>
+        <SetNewPasswordScreen onDone={()=>{setShowSetPassword(false);showToast("Contraseña actualizada ✅");}}/>
+      </>
+    );
+  }
 
   // Pantalla de login de ADMIN
   if(mode==="admin"&&!adminLoggedIn){
